@@ -4,23 +4,15 @@ DESCRIPTION:
 Pawfect Match is a web-based platform that connects pet owners who are looking for suitable mates, playmates, or companions for their pets. It features pet profiles, a compatibility algorithm, and secure communication tools to ensure ethical and responsible pet matchmaking.
 
 LANGUAGES / TECHNOLOGIES:
-Front-End Technologies: 
-- HTML, CSS, JavaScript,
-Bootstrap Back-End Technologies: 
-- Node.js, Express.js 
-Database: 
-- MongoDB 
-Authentication: 
-- JSON Web Tokens
-Client-Side Storage:
-- Storage: Local Storage and IndexedDB for temporary data management 
-API Integration:
-- Google Maps API: To display nearby pet profiles and calculate distances 
-Version Control: 
-- GitHub 
-Deployment:
-- Front-End: GitHub Pages
-- Back-End: Render/Vercel
+Front-End Technologies: HTML, CSS, JavaScript,
+Bootstrap Back-End Technologies: Node.js, Express.js 
+Database: MongoDB 
+Authentication: JSON Web Tokens
+Client-Side Storage: Local Storage and IndexedDB for temporary data management 
+API Integration: Google Maps API to display nearby pet profiles and calculate distances 
+Version Control: GitHub 
+Front-End Deployment: GitHub Pages
+Back-End Deployment: Render/Vercel
 
 FEATURES:
 - User Authentication and Profile Management: Secure login and profile setup  
