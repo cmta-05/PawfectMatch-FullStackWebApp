@@ -4,22 +4,22 @@ DESCRIPTION:
 Pawfect Match is a web-based platform designed to help pet owners find suitable mates, playmates, or companions for their pets. It features pet profiles along with basic information about their owners for reference. Users can send matchmaking requests, and once accepted, the platform allows owners to personally connect and arrange meetups for their pets at their own discretion.
 
 LANGUAGES / TECHNOLOGIES:
-Front-End Technologies: HTML, CSS, JavaScript,
-Bootstrap Back-End Technologies: Node.js, Express.js 
-Database: MongoDB 
-Authentication: JSON Web Tokens
-Client-Side Storage: Local Storage and IndexedDB for temporary data management 
-API Integration: UI Avatars that generates *avatar images* (profile pictures) with *initials inside colored circles or squares*. It’s perfect when users or pet owners don’t upload a photo. 
-Version Control: GitHub 
+Front-End: HTML, CSS, JavaScript, Bootstrap
+Back-End: Node.js, Express.js
+Database: MongoDB
+Authentication: JSON Web Tokens (JWT)
+Client-Side Storage: Local Storage and IndexedDB (for temporary data)
+API Integration: UI Avatars (generates avatar images using user initials inside colored shapes for accounts without profile photos)
+Version Control: GitHub
 Front-End Deployment: GitHub Pages
-Back-End Deployment: Render/Vercel
+Back-End Deployment: Render or Vercel
 
 FEATURES:
-- User Authentication and Profile Management: Secure login and profile setup  
-- Pet Profile Management: Detailed info and photos for each pet  
-- Smart Matchmaking Algorithm: Uses pet data and preferences to suggest matches  
-- Location: Find matches nearby using Google Maps  
-- Admin Dashboard: Admin can manage users, view reports, and resolve complaints  
+User Authentication & Profile Management: Secure login system with profile setup for pet owners
+Pet Profile Management: Allows users to create, view, and manage detailed profiles of their pets, including photos and characteristics
+Match Suggestions: Displays a list of potential matches 
+Matchmaking Requests: Users can send and receive match requests
+UI Avatars: Automatically generates profile images using initials when photos are not provided 
 
 MEMBERS & ROLE:
 Project Manager & GitHub Manager : Charlene Mae Adille
@@ -35,7 +35,7 @@ PROGRESS UPDATE & PERCENTAGE COMPLETION:
 - Phase 1 (Planning & Proposal): 100%  
 - Phase 1.1 (Setting Up) : 100%
 - Phase 2 (UI Development): 100%
-- Phase 3 (Backend and Database Integration): 20%
+- Phase 3 (Backend and Database Integration): 70%
 
 - Phase 4 (Form Submission & Data Insertion) :
 - Phase 5 (Data Retrieval & Display) : 
