@@ -1,43 +1,92 @@
-Pawfect Match - A Pet Matchmaking System
+# 🐾 Pawfect Match - A Pet Matchmaking System
 
-DESCRIPTION:
-Pawfect Match is a web-based platform designed to help pet owners find suitable mates, playmates, or companions for their pets. It features pet profiles along with basic information about their owners for reference. Users can send matchmaking requests, and once accepted, the platform allows owners to personally connect and arrange meetups for their pets at their own discretion.
+![Pawfect Match Logo](pawfect-logo.png)
 
-LANGUAGES / TECHNOLOGIES:
-Front-End: HTML, CSS, JavaScript, Bootstrap
-Back-End: Node.js, Express.js
-Database: MongoDB
-Authentication: JSON Web Tokens (JWT)
-Client-Side Storage: Local Storage and IndexedDB (for temporary data)
-API Integration: UI Avatars (generates avatar images using user initials inside colored shapes for accounts without profile photos)
-Version Control: GitHub
-Front-End Deployment: GitHub Pages
-Back-End Deployment: Render or Vercel
+## 📌 Description
 
-FEATURES:
-User Authentication & Profile Management: Secure login system with profile setup for pet owners
-Pet Profile Management: Allows users to create, view, and manage detailed profiles of their pets, including photos and characteristics
-Match Suggestions: Displays a list of potential matches 
-Matchmaking Requests: Users can send and receive match requests
-UI Avatars: Automatically generates profile images using initials when photos are not provided 
+Pawfect Match is a web-based platform designed to help pet owners find suitable mates, playmates, or companions for their pets. Users can create pet profiles and view other pets based on compatibility. Once a match request is accepted, owners can personally connect and arrange meetups at their own discretion.
 
-MEMBERS & ROLE:
-Project Manager & GitHub Manager : Charlene Mae Adille
-Frontend Developer : Enrick Guiller Relos
-Backend Developer : Jhon Kenneth Aguilar
-Database Manager : Juno Alligah Romano
-Documentation Officer : Hazel Marie Balunsay
+---
 
-CLASS BLOCK:
-BS Information Technology 2B
+## 💻 Technologies Used
 
-PROGRESS UPDATE & PERCENTAGE COMPLETION:
-- Phase 1 (Planning & Proposal): 100%  
-- Phase 1.1 (Setting Up) : 100%
-- Phase 2 (UI Development): 100%
-- Phase 3 (Backend and Database Integration): 70%
+- **Front-End:** HTML, CSS, JavaScript, Bootstrap  
+- **Back-End:** Node.js, Express.js  
+- **Database:** MongoDB  
+- **Authentication:** JSON Web Tokens (JWT)  
+- **Client-Side Storage:** Local Storage, IndexedDB  
+- **API Integration:** UI Avatars  
+  *(Generates avatar images using user initials for accounts without profile photos)*  
+  > 📝 *was: Google Maps API – used to display nearby pet profiles and calculate distances*
+- **Version Control:** GitHub  
+- **Deployment:**  
+  - Front-End: GitHub Pages  
+  - Back-End: Render or Vercel
 
-- Phase 4 (Form Submission & Data Insertion) :
-- Phase 5 (Data Retrieval & Display) : 
-- Phase 6 (Update & Delete FunctionalityPhase) :
-- Phase 7 (Project Polishing & Documentation) :
+---
+
+## 🚀 Features
+
+- **User Authentication & Profile Management**  
+  Secure login and profile setup for pet owners.
+
+- **Pet Profile Management**  
+  Create, view, and manage detailed profiles of pets including photos, breed, age, and traits.  
+  > 📝 *Previously included vaccination record uploads and verification — now simplified.*
+
+- **Match Suggestions**  
+  View a curated list of potential matches based on pet preferences.  
+  > 📝 *was: Smart Matchmaking Algorithm – matched based on pet data and preferences.*
+
+- **Matchmaking Requests**  
+  Send and receive match requests between pet owners.  
+  > 🆕 *Newly added feature in the updated version.*
+
+- **Messaging System**  
+  Users can include a personal message in match requests, ideal for:
+  - Scheduling meetups
+  - Sharing contact details or preferences  
+  > 🆕 *Newly added feature in the updated version.*
+
+- **UI Avatars**  
+  Automatically generates profile images using initials when photos are not uploaded.  
+  > 🆕 *Newly added feature in the updated version.*
+
+- **Admin Dashboard**  
+  Admins can manage user and pet profiles, view reports, and handle complaints.
+
+> ❌ Removed: **Location-Based Matching using Google Maps API** (present in the original proposal)
+
+---
+
+## 👥 Team Members & Roles
+
+| Name                     | Role                            |
+|--------------------------|---------------------------------|
+| Charlene Mae Adille     | Project Manager, GitHub Manager |
+| Enrick Guiller Relos    | Front-End Developer              |
+| Jhon Kenneth Aguilar    | Back-End Developer               |
+| Juno Alligah Romano     | Database Manager                 |
+| Hazel Marie Balunsay    | Documentation Officer            |
+
+---
+
+## 🏫 Class Information
+
+**Course:** Bachelor of Science in Information Technology  
+**Block:** 2B  
+
+---
+
+## 📈 Project Progress
+
+| Phase                                     | Status  |
+|------------------------------------------|---------|
+| Phase 1: Planning & Proposal              | ✅ 100% |
+| Phase 1.1: Setting Up                     | ✅ 100% |
+| Phase 2: UI Development                   | ✅ 100% |
+| Phase 3: Backend & Database Integration   | ✅ 100% |
+| Phase 4: Form Submission & Data Insertion | ⏳      |
+| Phase 5: Data Retrieval & Display         | ⏳      |
+| Phase 6: Update & Delete Functionality    | ⏳      |
+| Phase 7: Project Polishing & Documentation| ⏳      |
