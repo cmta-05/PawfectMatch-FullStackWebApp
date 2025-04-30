@@ -116,10 +116,10 @@
             <div class="row">
                 <div class="col-md-6">
                     <h5>Pawfect Match</h5>
-                    <p>Helping pets find their perfect homes since 2024.</p>
+                    <p>Helping pets find their perfect matches since 2025.</p>
                 </div>
                 <div class="col-md-6 text-md-end">
-                    <p>&copy; 2024 Pawfect Match. All rights reserved.</p>
+                    <p>&copy; 2025 Pawfect Match. All rights reserved.</p>
                 </div>
             </div>
         </div>
@@ -170,7 +170,14 @@
                 const email = document.getElementById('loginEmail').value;
                 const password = document.getElementById('loginPassword').value;
 
-                // In a real application, this would validate with the backend
+                // Check for admin credentials
+                if (email === 'admin@gmail.com' && password === 'admin123') {
+                    sessionStorage.setItem('adminLoggedIn', 'true');
+                    window.location.href = 'admin-dashboard.html';
+                    return;
+                }
+
+                // Regular user login
                 if (email && password) {
                     localStorage.setItem('isLoggedIn', 'true');
                     localStorage.setItem('userId', email); // Using email as userId for now
@@ -191,19 +198,23 @@
                     return;
                 }
 
-                // In a real application, this would send data to the backend
-                if (name && email && password) {
-                    // Store user data
-                    const userData = {
-                        name: name,
-                        email: email,
-                        password: password
-                    };
-                    localStorage.setItem('userData', JSON.stringify(userData));
-                    localStorage.setItem('isLoggedIn', 'true');
-                    localStorage.setItem('userId', email);
-                    window.location.href = 'index.html';
+                // Store user data in an array
+                let users = JSON.parse(localStorage.getItem('users')) || [];
+                // Prevent duplicate emails
+                if (users.some(u => u.email === email)) {
+                    alert('A user with this email already exists!');
+                    return;
                 }
+                const userData = {
+                    name: name,
+                    email: email,
+                    password: password
+                };
+                users.push(userData);
+                localStorage.setItem('users', JSON.stringify(users));
+                localStorage.setItem('isLoggedIn', 'true');
+                localStorage.setItem('userId', email);
+                window.location.href = 'index.html';
             });
         });
     </script>

@@ -122,4 +122,86 @@ body {
 
 ::-webkit-scrollbar-thumb:hover {
     background: var(--primary-color);
+}
+
+/* Admin Dashboard Styles */
+:root {
+    --admin-primary-color: #012312; /* Dark green */
+    --admin-accent-color: #FFB031;  /* Yellow */
+    --admin-background-color: #F8F9FA; /* Light background */
+    --admin-sidebar-text: #fff;
+    --admin-sidebar-hover: #FFB031;
+}
+
+.admin-dashboard-body {
+    background: var(--admin-background-color);
+}
+
+.admin-sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 250px;
+    background: var(--admin-primary-color);
+    border-right: none;
+    padding: 20px;
+    color: var(--admin-sidebar-text);
+    display: flex;
+    flex-direction: column;
+}
+
+.admin-sidebar h3 {
+    color: var(--admin-accent-color);
+}
+
+.admin-nav-link {
+    color: var(--admin-sidebar-text);
+    padding: 10px;
+    border-radius: 5px;
+    margin: 5px 0;
+    transition: background 0.2s, color 0.2s;
+}
+
+.admin-nav-link:hover, .admin-nav-link.active {
+    background-color: var(--admin-sidebar-hover);
+    color: var(--admin-primary-color);
+}
+
+.admin-main-content {
+    margin-left: 250px;
+    padding: 20px;
+    background: var(--admin-background-color);
+    min-height: 100vh;
+}
+
+.admin-card {
+    border: none;
+    box-shadow: 0 0 15px rgba(0,0,0,0.05);
+    margin-bottom: 20px;
+    background: #fff;
+}
+
+.admin-stats-card {
+    background: linear-gradient(45deg, var(--admin-primary-color), var(--admin-accent-color));
+    color: #fff;
+}
+
+.admin-action-btn {
+    margin: 0 5px;
+    background: var(--admin-accent-color);
+    color: var(--admin-primary-color);
+    border: none;
+}
+.admin-action-btn:hover {
+    background: var(--admin-primary-color);
+    color: var(--admin-accent-color);
+}
+
+#content > div {
+    display: none;
+}
+
+#content > div.active {
+    display: block;
 } 
