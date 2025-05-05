@@ -86,7 +86,7 @@ Pawfect Match is a web-based platform designed to help pet owners find suitable 
 | Phase 1.1: Setting Up                     | ✅ 100% |
 | Phase 2: UI Development                   | ✅ 100% |
 | Phase 3: Backend & Database Integration   | ✅ 100% |
-| Phase 4: Form Submission & Data Insertion | ⏳      |
-| Phase 5: Data Retrieval & Display         | ⏳      |
+| Phase 4: Form Submission & Data Insertion | ⏳  50% |
+| Phase 5: Data Retrieval & Display         | ⏳  50% |
 | Phase 6: Update & Delete Functionality    | ⏳      |
 | Phase 7: Project Polishing & Documentation| ⏳      |
