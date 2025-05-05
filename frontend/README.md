@@ -3,7 +3,7 @@
 
 This phase focuses on building the **frontend user interface** of our web application, aligned with the system’s **Entity-Relationship Diagram (ERD)** and **Use Case Diagrams**.
 
-![Pawfect Match Logo](frontend.png)
+![frontend page](frontend.png)
 
 ---
 
