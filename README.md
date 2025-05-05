@@ -1,6 +1,6 @@
 # 🐾 Pawfect Match - A Pet Matchmaking System
 
-![Pawfect Match Logo](pawfect-logo.png)
+![Pawfect Match Logo](/docs/pawfect-logo.png)
 
 ## 📌 Description
 
