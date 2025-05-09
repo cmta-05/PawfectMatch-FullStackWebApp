@@ -159,333 +159,249 @@
     <!-- Custom JS -->
     <script>
         // Add these functions at the beginning of the script
-        function handleImagePreview(input, previewContainer) {
-            if (input.files && input.files[0]) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    previewContainer.innerHTML = `
-                        <div class="position-relative">
-                            <img src="${e.target.result}" alt="Preview" style="width: 150px; height: 150px; object-fit: cover; border-radius: 8px;">
-                        </div>
-                    `;
-                };
-                reader.readAsDataURL(input.files[0]);
-            }
+        function showLoading() {
+            const spinner = document.createElement('div');
+            spinner.id = 'loadingSpinner';
+            spinner.innerHTML = `
+                <div class="position-fixed top-0 start-0 w-100 h-100 d-flex justify-content-center align-items-center" 
+                     style="background: rgba(0,0,0,0.5); z-index: 9999;">
+                    <div class="spinner-border text-light" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                </div>
+            `;
+            document.body.appendChild(spinner);
         }
 
-        function handleMultipleImagePreview(input, previewContainer) {
-            if (input.files && input.files.length > 0) {
-                const files = Array.from(input.files).slice(0, 3);
-                previewContainer.innerHTML = '';
-                
-                files.forEach(file => {
-                    const reader = new FileReader();
-                    reader.onload = function(e) {
-                        const imgContainer = document.createElement('div');
-                        imgContainer.className = 'position-relative';
-                        imgContainer.innerHTML = `
-                            <img src="${e.target.result}" alt="Preview" style="width: 150px; height: 150px; object-fit: cover; border-radius: 8px;">
-                        </div>
-                        `;
-                        previewContainer.appendChild(imgContainer);
-                    };
-                    reader.readAsDataURL(file);
-                });
-            }
+        function hideLoading() {
+            const spinner = document.getElementById('loadingSpinner');
+            if (spinner) spinner.remove();
         }
 
-        document.addEventListener('DOMContentLoaded', function() {
-            // Add debugging
-            console.log('Login State:', localStorage.getItem('isLoggedIn'));
-            console.log('User Pets:', localStorage.getItem('userPets'));
-            
-            // Check if user is logged in
-            const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
-            const container = document.getElementById('myPetsContainer');
-            const showAddPetForm = document.getElementById('showAddPetForm');
-            const addPetForm = document.getElementById('addPetForm');
-            const addPetFormElement = document.getElementById('addPetFormElement');
-            const imagePreview = document.getElementById('imagePreview');
+        function showError(message) {
+            const errorDiv = document.createElement('div');
+            errorDiv.className = 'alert alert-danger alert-dismissible fade show position-fixed top-0 start-50 translate-middle-x mt-3';
+            errorDiv.style.zIndex = '9999';
+            errorDiv.innerHTML = `
+                ${message}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            `;
+            document.body.appendChild(errorDiv);
+            setTimeout(() => errorDiv.remove(), 5000);
+        }
 
-            // Update UI based on authentication status
-            if (!isLoggedIn) {
-                window.location.href = 'login.html';
+        function showSuccess(message) {
+            const successDiv = document.createElement('div');
+            successDiv.className = 'alert alert-success alert-dismissible fade show position-fixed top-0 start-50 translate-middle-x mt-3';
+            successDiv.style.zIndex = '9999';
+            successDiv.innerHTML = `
+                ${message}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            `;
+            document.body.appendChild(successDiv);
+            setTimeout(() => successDiv.remove(), 3000);
+        }
+
+        // Function to delete a pet
+        async function deletePet(petId) {
+            if (!confirm('Are you sure you want to delete this pet?')) {
                 return;
             }
 
-            // Show the Add Pet button since user is logged in
-            if (showAddPetForm) {
-                showAddPetForm.style.display = 'block';
-            }
-
-            // Get user's pets from localStorage
-            const userPets = JSON.parse(localStorage.getItem('userPets') || '[]');
-
-            // Show/hide add pet form
-            if (showAddPetForm) {
-                showAddPetForm.addEventListener('click', function() {
-                    addPetForm.style.display = 'block';
-                    showAddPetForm.style.display = 'none';
+            showLoading();
+            try {
+                const response = await fetch(`http://localhost:3000/api/pets/${petId}`, {
+                    method: 'DELETE',
                 });
+
+                if (!response.ok) {
+                    throw new Error('Failed to delete pet');
+                }
+
+                // Update localStorage
+                let userPets = JSON.parse(localStorage.getItem('userPets') || '[]');
+                userPets = userPets.filter(pet => pet._id !== petId);
+                localStorage.setItem('userPets', JSON.stringify(userPets));
+
+                showSuccess('Pet deleted successfully');
+                loadUserPets(); // Reload the pets list
+            } catch (error) {
+                console.error('Error:', error);
+                showError('Failed to delete pet. Please try again.');
+            } finally {
+                hideLoading();
             }
+        }
 
-            // Handle form cancellation
-            const cancelAddPet = document.getElementById('cancelAddPet');
-            if (cancelAddPet) {
-                cancelAddPet.addEventListener('click', function() {
-                    addPetForm.style.display = 'none';
-                    showAddPetForm.style.display = 'block';
-                    addPetFormElement.reset();
-                    imagePreview.innerHTML = '';
-                });
-            }
+        // Function to edit a pet
+        async function editPet(petId) {
+            showLoading();
+            try {
+                // Fetch pet details from backend
+                const response = await fetch(`http://localhost:3000/api/pets/${petId}`);
+                if (!response.ok) {
+                    throw new Error('Failed to fetch pet details');
+                }
 
-            // Handle image preview
-            const profileImageInput = document.getElementById('profileImage');
-            const additionalImagesInput = document.getElementById('additionalImages');
+                const pet = await response.json();
+                
+                // Show the add pet form
+                const addPetForm = document.getElementById('addPetForm');
+                const showAddPetForm = document.getElementById('showAddPetForm');
+                addPetForm.style.display = 'block';
+                if (showAddPetForm) showAddPetForm.style.display = 'none';
 
-            if (profileImageInput) {
-                profileImageInput.addEventListener('change', function() {
-                    const file = this.files[0];
-                    if (file) {
-                        const reader = new FileReader();
-                        reader.onload = function(e) {
-                            imagePreview.innerHTML = `
-                                <div class="position-relative">
-                                    <img src="${e.target.result}" alt="Profile Preview" style="width: 150px; height: 150px; object-fit: cover; border-radius: 8px;">
-                                    <span class="badge bg-primary position-absolute top-0 start-0 m-2">Profile</span>
-                                </div>
-                            `;
-                        };
-                        reader.readAsDataURL(file);
-                    }
-                });
-            }
+                // Update form title
+                const formTitle = addPetForm.querySelector('.card-title');
+                formTitle.textContent = 'Edit Pet';
 
-            if (additionalImagesInput) {
-                additionalImagesInput.addEventListener('change', function() {
-                    const files = Array.from(this.files).slice(0, 3);
-                    if (files.length > 3) {
-                        alert('Please select up to 3 additional photos');
-                        this.value = '';
-                        return;
-                    }
+                // Fill in the form with pet data
+                document.getElementById('dogName').value = pet.name;
+                document.getElementById('breed').value = pet.breed;
+                document.getElementById('age').value = parseFloat(pet.age);
+                document.querySelector(`input[name="gender"][value="${pet.gender}"]`).checked = true;
+                document.getElementById('location').value = pet.location;
+                document.getElementById('description').value = pet.description;
 
-                    // Keep profile image preview if it exists
-                    const profilePreview = imagePreview.querySelector('div');
-                    imagePreview.innerHTML = '';
-                    if (profilePreview) {
-                        imagePreview.appendChild(profilePreview);
-                    }
+                // Show current images
+                const imagePreview = document.getElementById('imagePreview');
+                imagePreview.innerHTML = `
+                    <div class="position-relative">
+                        <img src="${pet.profileImage}" alt="Profile Preview" style="width: 150px; height: 150px; object-fit: cover; border-radius: 8px;">
+                        <span class="badge bg-primary position-absolute top-0 start-0 m-2">Current Profile</span>
+                    </div>
+                    ${pet.additionalImages ? pet.additionalImages.map(img => `
+                        <div class="position-relative">
+                            <img src="${img}" alt="Additional Preview" style="width: 150px; height: 150px; object-fit: cover; border-radius: 8px;">
+                            <span class="badge bg-secondary position-absolute top-0 start-0 m-2">Current Additional</span>
+                        </div>
+                    `).join('') : ''}
+                `;
 
-                    files.forEach(file => {
-                        const reader = new FileReader();
-                        reader.onload = function(e) {
-                            const imgContainer = document.createElement('div');
-                            imgContainer.className = 'position-relative';
-                            imgContainer.innerHTML = `
-                                <img src="${e.target.result}" alt="Additional Preview" style="width: 150px; height: 150px; object-fit: cover; border-radius: 8px;">
-                                <span class="badge bg-secondary position-absolute top-0 start-0 m-2">Additional</span>
-                            `;
-                            imagePreview.appendChild(imgContainer);
-                        };
-                        reader.readAsDataURL(file);
-                    });
-                });
-            }
+                // Update the form submit button
+                const submitBtn = addPetForm.querySelector('button[type="submit"]');
+                submitBtn.textContent = 'Save Changes';
 
-            // Update the form submission handler
-            if (addPetFormElement) {
-                addPetFormElement.addEventListener('submit', async function(e) {
+                // Update form submission handler
+                const form = document.getElementById('addPetFormElement');
+                form.onsubmit = async function(e) {
                     e.preventDefault();
+                    showLoading();
                     
                     try {
-                        // Get form values
-                        const name = document.getElementById('dogName').value;
-                        const breed = document.getElementById('breed').value;
-                        const age = document.getElementById('age').value;
-                        const gender = document.querySelector('input[name="gender"]:checked')?.value;
-                        const location = document.getElementById('location').value;
-                        const description = document.getElementById('description').value;
+                        const formData = await getFormData();
                         
-                        // Get image files
-                        const profileImageFile = document.getElementById('profileImage').files[0];
-                        const additionalImageFiles = Array.from(document.getElementById('additionalImages').files || []).slice(0, 3);
-                        
-                        // Validate required fields
-                        if (!name || !breed || !age || !gender || !location || !description) {
-                            alert('Please fill in all required fields.');
-                            return;
+                        // Send update to backend
+                        const updateResponse = await fetch(`http://localhost:3000/api/pets/${petId}`, {
+                            method: 'PUT',
+                            headers: {
+                                'Content-Type': 'application/json',
+                            },
+                            body: JSON.stringify(formData)
+                        });
+
+                        if (!updateResponse.ok) {
+                            throw new Error('Failed to update pet');
                         }
 
-                        if (!profileImageFile) {
-                            alert('Please upload a profile picture.');
-                            return;
-                        }
+                        const updatedPet = await updateResponse.json();
 
-                        // Convert images to base64
-                        const getBase64 = (file) => {
-                            return new Promise((resolve, reject) => {
-                                const reader = new FileReader();
-                                reader.readAsDataURL(file);
-                                reader.onload = () => resolve(reader.result);
-                                reader.onerror = error => reject(error);
-                            });
-                        };
-
-                        // Process profile image
-                        let profileImageBase64;
-                        try {
-                            profileImageBase64 = await getBase64(profileImageFile);
-                        } catch (error) {
-                            console.error('Error processing profile image:', error);
-                            alert('Error processing profile image. Please try again.');
-                            return;
-                        }
-
-                        // Process additional images
-                        let additionalImagesBase64 = [];
-                        if (additionalImageFiles.length > 0) {
-                            try {
-                                additionalImagesBase64 = await Promise.all(
-                                    additionalImageFiles.map(file => getBase64(file))
-                                );
-                            } catch (error) {
-                                console.error('Error processing additional images:', error);
-                                alert('Error processing additional images. Please try again.');
-                                return;
-                            }
-                        }
-                        
-                        const formData = {
-                            name: name,
-                            type: "Dog",
-                            breed: breed,
-                            age: age + ' years',
-                            gender: gender,
-                            location: location,
-                            description: description,
-                            profileImage: profileImageBase64,
-                            additionalImages: additionalImagesBase64,
-                            userId: localStorage.getItem('userId')
-                        };
-
-                        // Send data to backend
-                        try {
-                            const response = await fetch('http://localhost:3000/api/pets', {
-                                method: 'POST',
-                                headers: {
-                                    'Content-Type': 'application/json',
-                                },
-                                body: JSON.stringify(formData)
-                            });
-
-                            if (!response.ok) {
-                                const errorData = await response.json();
-                                throw new Error(errorData.message || 'Failed to add pet');
-                            }
-
-                            const savedPet = await response.json();
-                            
-                            // Get existing user pets from localStorage
-                            let userPets = JSON.parse(localStorage.getItem('userPets') || '[]');
-                            // Add new pet to user's pets
-                            userPets.push(savedPet);
-                            // Save updated user pets to localStorage
+                        // Update localStorage
+                        let userPets = JSON.parse(localStorage.getItem('userPets') || '[]');
+                        const petIndex = userPets.findIndex(p => p._id === petId);
+                        if (petIndex !== -1) {
+                            userPets[petIndex] = updatedPet;
                             localStorage.setItem('userPets', JSON.stringify(userPets));
-
-                            // Reset form and hide it
-                            addPetFormElement.reset();
-                            document.getElementById('profileImagePreview').innerHTML = '';
-                            document.getElementById('additionalImagesPreview').innerHTML = '';
-                            addPetForm.style.display = 'none';
-                            
-                            // Show the Add New Pet button
-                            if (showAddPetForm) {
-                                showAddPetForm.style.display = 'block';
-                            }
-
-                            // Reload the page to show the new pet
-                            window.location.reload();
-                        } catch (error) {
-                            console.error('Error saving pet to backend:', error);
-                            alert('Error saving pet to server. Please try again.');
                         }
+
+                        showSuccess('Pet updated successfully');
+                        
+                        // Reset form and reload pets
+                        form.reset();
+                        addPetForm.style.display = 'none';
+                        if (showAddPetForm) showAddPetForm.style.display = 'block';
+                        loadUserPets();
                     } catch (error) {
-                        console.error('Error adding pet:', error);
-                        alert('There was an error adding the pet. Please try again.');
+                        console.error('Error:', error);
+                        showError('Failed to update pet. Please try again.');
+                    } finally {
+                        hideLoading();
                     }
-                });
+                };
+            } catch (error) {
+                console.error('Error:', error);
+                showError('Failed to load pet details. Please try again.');
+            } finally {
+                hideLoading();
             }
+        }
 
-            // Function to convert file to base64
-            function getBase64(file) {
-                return new Promise((resolve, reject) => {
-                    const reader = new FileReader();
-                    reader.readAsDataURL(file);
-                    reader.onload = () => resolve(reader.result);
-                    reader.onerror = error => reject(error);
-                });
-            }
-
-            // Display user's pets
-            if (userPets.length === 0) {
-                container.innerHTML = `
-                    <div class="col-12 text-center">
-                        <p class="lead">You haven't added any pets yet.</p>
-                        <button class="btn" style="background-color: #012312; color: white;" id="showAddPetFormEmpty">
-                            <i class="fas fa-plus me-2"></i>Add Your First Pet
-                        </button>
-                    </div>
-                `;
-                // Add event listener for the empty state button
-                const emptyStateBtn = document.getElementById('showAddPetFormEmpty');
-                if (emptyStateBtn) {
-                    emptyStateBtn.addEventListener('click', function() {
-                        addPetForm.style.display = 'block';
-                        this.style.display = 'none';
-                    });
+        // Function to load user's pets
+        async function loadUserPets() {
+            showLoading();
+            try {
+                const userId = localStorage.getItem('userId');
+                const response = await fetch(`http://localhost:3000/api/pets?userId=${userId}`);
+                
+                if (!response.ok) {
+                    throw new Error('Failed to load pets');
                 }
-            } else {
-                userPets.forEach(pet => {
-                    const petCard = document.createElement('div');
-                    petCard.className = 'col-md-4 mb-4';
-                    petCard.innerHTML = `
-                        <div class="card h-100">
-                            <div style="position: relative; padding-top: 100%; overflow: hidden;">
-                                <img src="${pet.profileImage}" class="card-img-top" alt="${pet.name}" 
-                                    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;">
-                            </div>
-                            <div class="card-body">
-                                <h5 class="card-title">${pet.name}</h5>
-                                <p class="card-text">
-                                    <i class="fas fa-dog me-2"></i>${pet.breed}<br>
-                                    <i class="fas fa-birthday-cake me-2"></i>${pet.age}<br>
-                                    <i class="fas fa-map-marker-alt me-2"></i>${pet.location}
-                                </p>
-                                <p class="card-text">${pet.description}</p>
-                                ${pet.additionalImages && pet.additionalImages.length > 0 ? `
-                                <div class="d-flex gap-2 mt-3">
-                                    ${pet.additionalImages.map(img => `
-                                        <img src="${img}" alt="Additional photo" style="width: 60px; height: 60px; object-fit: cover; border-radius: 4px; cursor: pointer;" onclick="showFullImage('${img}')">
-                                    `).join('')}
-                                </div>
-                                ` : ''}
-                            </div>
-                            <div class="card-footer d-flex justify-content-between">
-                                <button class="btn" style="background-color: #FFB031; color: #012312;" onclick="editPet(${pet.id})">
-                                    <i class="fas fa-edit me-2"></i>Edit
-                                </button>
-                                <button class="btn btn-danger" onclick="deletePet(${pet.id})">
-                                    <i class="fas fa-trash me-2"></i>Delete
-                                </button>
-                            </div>
+
+                const pets = await response.json();
+                const container = document.getElementById('myPetsContainer');
+                
+                if (pets.length === 0) {
+                    container.innerHTML = `
+                        <div class="col-12 text-center">
+                            <p class="lead">You haven't added any pets yet.</p>
+                            <button class="btn" style="background-color: #012312; color: white;" id="showAddPetFormEmpty">
+                                <i class="fas fa-plus me-2"></i>Add Your First Pet
+                            </button>
                         </div>
                     `;
-                    container.appendChild(petCard);
-                });
+                } else {
+                    container.innerHTML = pets.map(pet => `
+                        <div class="col-md-4 mb-4">
+                            <div class="card h-100">
+                                <div style="position: relative; padding-top: 100%; overflow: hidden;">
+                                    <img src="${pet.profileImage}" class="card-img-top" alt="${pet.name}" 
+                                        style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;">
+                                </div>
+                                <div class="card-body">
+                                    <h5 class="card-title">${pet.name}</h5>
+                                    <p class="card-text">
+                                        <i class="fas fa-dog me-2"></i>${pet.breed}<br>
+                                        <i class="fas fa-birthday-cake me-2"></i>${pet.age}<br>
+                                        <i class="fas fa-map-marker-alt me-2"></i>${pet.location}
+                                    </p>
+                                    <p class="card-text">${pet.description}</p>
+                                    ${pet.additionalImages && pet.additionalImages.length > 0 ? `
+                                    <div class="d-flex gap-2 mt-3">
+                                        ${pet.additionalImages.map(img => `
+                                            <img src="${img}" alt="Additional photo" style="width: 60px; height: 60px; object-fit: cover; border-radius: 4px; cursor: pointer;" onclick="showFullImage('${img}')">
+                                        `).join('')}
+                                    </div>
+                                    ` : ''}
+                                </div>
+                                <div class="card-footer d-flex justify-content-between">
+                                    <button class="btn" style="background-color: #FFB031; color: #012312;" onclick="editPet('${pet._id}')">
+                                        <i class="fas fa-edit me-2"></i>Edit
+                                    </button>
+                                    <button class="btn btn-danger" onclick="deletePet('${pet._id}')">
+                                        <i class="fas fa-trash me-2"></i>Delete
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    `).join('');
+                }
+            } catch (error) {
+                console.error('Error loading pets:', error);
+                showError('Failed to load pets. Please refresh the page.');
+            } finally {
+                hideLoading();
             }
-        });
+        }
 
         // Function to show full-size image
         function showFullImage(imgSrc) {
@@ -509,118 +425,178 @@
             });
         }
 
-        // Function to delete a pet
-        function deletePet(petId) {
-            if (confirm('Are you sure you want to delete this pet?')) {
-                let userPets = JSON.parse(localStorage.getItem('userPets') || '[]');
-                userPets = userPets.filter(pet => pet.id !== petId);
-                localStorage.setItem('userPets', JSON.stringify(userPets));
-                window.location.reload();
+        // Initialize the page
+        document.addEventListener('DOMContentLoaded', function() {
+            // Check authentication
+            const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+            const userId = localStorage.getItem('userId');
+            
+            if (!isLoggedIn || !userId) {
+                window.location.href = 'login.html';
+                return;
+            }
+
+            // Load user's pets
+            loadUserPets();
+
+            // Show/hide add pet form
+            const showAddPetForm = document.getElementById('showAddPetForm');
+            const addPetForm = document.getElementById('addPetForm');
+            
+            if (showAddPetForm) {
+                showAddPetForm.style.display = 'block';
+                showAddPetForm.addEventListener('click', function() {
+                    addPetForm.style.display = 'block';
+                    showAddPetForm.style.display = 'none';
+                });
+            }
+
+            // Handle form cancellation
+            const cancelAddPet = document.getElementById('cancelAddPet');
+            if (cancelAddPet) {
+                cancelAddPet.addEventListener('click', function() {
+                    addPetForm.style.display = 'none';
+                    showAddPetForm.style.display = 'block';
+                    document.getElementById('addPetFormElement').reset();
+                    document.getElementById('imagePreview').innerHTML = '';
+                });
+            }
+
+            // Add form submission handler
+            const addPetFormElement = document.getElementById('addPetFormElement');
+            if (addPetFormElement) {
+                addPetFormElement.addEventListener('submit', async function(e) {
+                    e.preventDefault();
+                    showLoading();
+                    
+                    try {
+                        const formData = await getFormData();
+                        
+                        // Send to backend
+                        const response = await fetch('http://localhost:3000/api/pets', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                            },
+                            body: JSON.stringify(formData)
+                        });
+
+                        if (!response.ok) {
+                            const errorData = await response.json();
+                            throw new Error(errorData.message || 'Failed to add pet');
+                        }
+
+                        const savedPet = await response.json();
+
+                        // Update localStorage
+                        let userPets = JSON.parse(localStorage.getItem('userPets') || '[]');
+                        userPets.push(savedPet);
+                        localStorage.setItem('userPets', JSON.stringify(userPets));
+
+                        // Reset form and show success message
+                        addPetFormElement.reset();
+                        document.getElementById('profileImagePreview').innerHTML = '';
+                        document.getElementById('additionalImagesPreview').innerHTML = '';
+                        document.getElementById('imagePreview').innerHTML = '';
+                        addPetForm.style.display = 'none';
+                        showAddPetForm.style.display = 'block';
+                        
+                        showSuccess('Pet added successfully!');
+                        
+                        // Reload pets
+                        loadUserPets();
+                    } catch (error) {
+                        console.error('Error:', error);
+                        showError(error.message || 'There was an error adding the pet. Please try again.');
+                    } finally {
+                        hideLoading();
+                    }
+                });
+            }
+        });
+
+        // Function to get form data
+        async function getFormData() {
+            const name = document.getElementById('dogName').value;
+            const breed = document.getElementById('breed').value;
+            const age = document.getElementById('age').value;
+            const gender = document.querySelector('input[name="gender"]:checked')?.value;
+            const location = document.getElementById('location').value;
+            const description = document.getElementById('description').value;
+            const profileImageFile = document.getElementById('profileImage').files[0];
+            const additionalImageFiles = Array.from(document.getElementById('additionalImages').files || []).slice(0, 3);
+
+            // Validate required fields
+            if (!name || !breed || !age || !gender || !location || !description) {
+                throw new Error('Please fill in all required fields.');
+            }
+
+            if (!profileImageFile) {
+                throw new Error('Please upload a profile picture.');
+            }
+
+            // Process images
+            const profileImageBase64 = await getBase64(profileImageFile);
+            const additionalImagesBase64 = await Promise.all(
+                additionalImageFiles.map(file => getBase64(file))
+            );
+
+            return {
+                name,
+                type: "Dog",
+                breed,
+                age: age + ' years',
+                gender,
+                location,
+                description,
+                profileImage: profileImageBase64,
+                additionalImages: additionalImagesBase64,
+                userId: localStorage.getItem('userId')
+            };
+        }
+
+        // Function to convert file to base64
+        function getBase64(file) {
+            return new Promise((resolve, reject) => {
+                const reader = new FileReader();
+                reader.readAsDataURL(file);
+                reader.onload = () => resolve(reader.result);
+                reader.onerror = error => reject(error);
+            });
+        }
+
+        // Function to handle image preview
+        function handleImagePreview(input, previewContainer) {
+            if (input.files && input.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    previewContainer.innerHTML = `
+                        <div class="position-relative">
+                            <img src="${e.target.result}" alt="Preview" style="width: 150px; height: 150px; object-fit: cover; border-radius: 8px;">
+                        </div>
+                    `;
+                };
+                reader.readAsDataURL(input.files[0]);
             }
         }
 
-        // Function to edit a pet
-        function editPet(petId) {
-            const userPets = JSON.parse(localStorage.getItem('userPets') || '[]');
-            const pet = userPets.find(p => p.id === petId);
-            if (!pet) return;
-
-            // Show the add pet form
-            const addPetForm = document.getElementById('addPetForm');
-            const showAddPetForm = document.getElementById('showAddPetForm');
-            addPetForm.style.display = 'block';
-            if (showAddPetForm) showAddPetForm.style.display = 'none';
-
-            // Update form title
-            const formTitle = addPetForm.querySelector('.card-title');
-            formTitle.textContent = 'Edit Pet';
-
-            // Fill in the form with pet data
-            document.getElementById('dogName').value = pet.name;
-            document.getElementById('breed').value = pet.breed;
-            document.getElementById('age').value = parseFloat(pet.age);
-            document.querySelector(`input[name="gender"][value="${pet.gender}"]`).checked = true;
-            document.getElementById('location').value = pet.location;
-            document.getElementById('description').value = pet.description;
-
-            // Show current images
-            const imagePreview = document.getElementById('imagePreview');
-            imagePreview.innerHTML = `
-                <div class="position-relative">
-                    <img src="${pet.profileImage}" alt="Profile Preview" style="width: 150px; height: 150px; object-fit: cover; border-radius: 8px;">
-                    <span class="badge bg-primary position-absolute top-0 start-0 m-2">Current Profile</span>
-                </div>
-                ${pet.additionalImages ? pet.additionalImages.map(img => `
-                    <div class="position-relative">
-                        <img src="${img}" alt="Additional Preview" style="width: 150px; height: 150px; object-fit: cover; border-radius: 8px;">
-                        <span class="badge bg-secondary position-absolute top-0 start-0 m-2">Current Additional</span>
-                    </div>
-                `).join('') : ''}
-            `;
-
-            // Update the form submit button
-            const submitBtn = addPetForm.querySelector('button[type="submit"]');
-            submitBtn.textContent = 'Save Changes';
-
-            // Update form submission handler
-            const form = document.getElementById('addPetFormElement');
-            form.onsubmit = async function(e) {
-                e.preventDefault();
-                
-                try {
-                    const profileImageFile = document.getElementById('profileImage').files[0];
-                    const additionalImageFiles = Array.from(document.getElementById('additionalImages').files).slice(0, 3);
-                    
-                    // Only convert new images if they were uploaded
-                    const profileImageBase64 = profileImageFile ? await getBase64(profileImageFile) : pet.profileImage;
-                    const additionalImagesBase64 = additionalImageFiles.length > 0 
-                        ? await Promise.all(additionalImageFiles.map(file => getBase64(file)))
-                        : pet.additionalImages || [];
-                    
-                    const updatedPet = {
-                        ...pet,
-                        name: document.getElementById('dogName').value,
-                        breed: document.getElementById('breed').value,
-                        age: document.getElementById('age').value + ' years',
-                        gender: document.querySelector('input[name="gender"]:checked').value,
-                        location: document.getElementById('location').value,
-                        description: document.getElementById('description').value,
-                        profileImage: profileImageBase64,
-                        additionalImages: additionalImagesBase64
+        // Function to handle multiple image preview
+        function handleMultipleImagePreview(input, previewContainer) {
+            if (input.files && input.files.length > 0) {
+                previewContainer.innerHTML = '';
+                const files = Array.from(input.files).slice(0, 3);
+                files.forEach(file => {
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        const imgContainer = document.createElement('div');
+                        imgContainer.className = 'position-relative';
+                        imgContainer.innerHTML = `
+                            <img src="${e.target.result}" alt="Preview" style="width: 150px; height: 150px; object-fit: cover; border-radius: 8px;">
+                        `;
+                        previewContainer.appendChild(imgContainer);
                     };
-
-                    // Update pet in localStorage
-                    const userPets = JSON.parse(localStorage.getItem('userPets') || '[]');
-                    const petIndex = userPets.findIndex(p => p.id === petId);
-                    if (petIndex !== -1) {
-                        userPets[petIndex] = updatedPet;
-                        localStorage.setItem('userPets', JSON.stringify(userPets));
-                    }
-
-                    // Reset form and reload page
-                    form.reset();
-                    addPetForm.style.display = 'none';
-                    if (showAddPetForm) showAddPetForm.style.display = 'block';
-                    window.location.reload();
-                } catch (error) {
-                    console.error('Error processing images:', error);
-                    alert('There was an error processing the images. Please try again.');
-                }
-            };
-
-            // Update cancel button to reset form properly
-            const cancelBtn = document.getElementById('cancelAddPet');
-            if (cancelBtn) {
-                cancelBtn.onclick = function() {
-                    form.reset();
-                    formTitle.textContent = 'Add a New Pet';
-                    submitBtn.textContent = 'Add Pet';
-                    imagePreview.innerHTML = '';
-                    addPetForm.style.display = 'none';
-                    if (showAddPetForm) showAddPetForm.style.display = 'block';
-                    // Reset form submission handler
-                    form.onsubmit = null;
-                };
+                    reader.readAsDataURL(file);
+                });
             }
         }
     </script>

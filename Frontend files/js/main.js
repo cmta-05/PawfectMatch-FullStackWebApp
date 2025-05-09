@@ -589,7 +589,8 @@ async function updatePet(id, petData) {
 
 // Delete a pet in backend
 async function deletePet(id) {
-    const res = await fetch(`/pets/${id}`, { method: 'DELETE' });
+    // Use the correct backend API endpoint
+    const res = await fetch(`http://localhost:3000/api/pets/${id}`, { method: 'DELETE' });
     return await res.json();
 }
 
@@ -598,48 +599,58 @@ async function renderMyPets() {
     const container = document.getElementById('myPetsContainer');
     if (!container) return;
     
-    const userPets = JSON.parse(localStorage.getItem('userPets') || '[]')
-        .filter(pet => pet.userId === localStorage.getItem('userId'));
-    
-    if (userPets.length === 0) {
-        container.innerHTML = `
-            <div class="col-12 text-center">
-                <p class="text-muted">You haven't added any pets yet.</p>
-            </div>
-        `;
-        return;
-    }
-    
-    container.innerHTML = userPets.map(pet => `
-        <div class="col-md-4 mb-4">
-            <div class="card h-100">
-                <img src="${pet.images[0] || 'images/pet-placeholder1.jpg'}" 
-                     class="card-img-top" 
-                     alt="${pet.name}"
-                     style="height: 200px; object-fit: cover;">
-                <div class="card-body">
-                    <h5 class="card-title">${pet.name}</h5>
-                    <p class="card-text">
-                        <strong>Breed:</strong> ${pet.breed}<br>
-                        <strong>Age:</strong> ${pet.age} years<br>
-                        <strong>Gender:</strong> ${pet.gender}<br>
-                        <strong>Location:</strong> ${pet.location}
-                    </p>
-                    <p class="card-text">${pet.description}</p>
+    // Fetch from backend instead of localStorage
+    try {
+        const userId = localStorage.getItem('userId');
+        const res = await fetch(`http://localhost:3000/api/pets?userId=${userId}`);
+        const pets = await res.json();
+        const userPets = pets.filter(pet => pet.userId === userId);
+
+        if (userPets.length === 0) {
+            container.innerHTML = `
+                <div class="col-12 text-center">
+                    <p class="text-muted">You haven't added any pets yet.</p>
                 </div>
-                <div class="card-footer bg-transparent border-0">
-                    <div class="d-flex justify-content-between">
-                        <button class="btn btn-outline-primary" onclick="showEditPetForm(${pet.id})">
-                            <i class="fas fa-edit"></i> Edit
-                        </button>
-                        <button class="btn btn-outline-danger" onclick="handleDeletePet(${pet.id})">
-                            <i class="fas fa-trash"></i> Delete
-                        </button>
+            `;
+            return;
+        }
+        
+        container.innerHTML = userPets.map(pet => `
+            <div class="col-md-4 mb-4">
+                <div class="card h-100">
+                    <img src="${pet.images && pet.images[0] ? pet.images[0] : 'images/pet-placeholder1.jpg'}" 
+                         class="card-img-top" 
+                         alt="${pet.name}"
+                         style="height: 200px; object-fit: cover;">
+                    <div class="card-body">
+                        <h5 class="card-title">${pet.name}</h5>
+                        <p class="card-text">
+                            <strong>Breed:</strong> ${pet.breed}<br>
+                            <strong>Age:</strong> ${pet.age} years<br>
+                            <strong>Gender:</strong> ${pet.gender}<br>
+                            <strong>Location:</strong> ${pet.location}
+                        </p>
+                        <p class="card-text">${pet.description}</p>
+                    </div>
+                    <div class="card-footer bg-transparent border-0">
+                        <div class="d-flex justify-content-between">
+                            <button class="btn btn-outline-primary" onclick="showEditPetForm('${pet._id}')">
+                                <i class="fas fa-edit"></i> Edit
+                            </button>
+                            <button class="btn btn-outline-danger" onclick="handleDeletePet('${pet._id}')">
+                                <i class="fas fa-trash"></i> Delete
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    `).join('');
+        `).join('');
+        // Update localStorage for consistency
+        localStorage.setItem('userPets', JSON.stringify(userPets));
+    } catch (error) {
+        container.innerHTML = `<div class="col-12 text-center"><p class="text-danger">Failed to load pets.</p></div>`;
+        console.error('Error loading pets:', error);
+    }
 }
 
 // Add event listeners for add/edit/delete
@@ -684,27 +695,27 @@ async function handleAddPet(e) {
             gender,
             location,
             description,
-            images: [profileImageBase64, ...additionalImagesBase64].filter(Boolean)
+            images: [profileImageBase64, ...additionalImagesBase64].filter(Boolean),
+            userId: localStorage.getItem('userId')
         };
         
-        // Add pet to localStorage
-        const userPets = JSON.parse(localStorage.getItem('userPets') || '[]');
-        userPets.push({
-            ...petData,
-            id: Date.now(), // Generate a unique ID
-            userId: localStorage.getItem('userId')
+        // Send to backend
+        const response = await fetch('http://localhost:3000/api/pets', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(petData)
         });
-        localStorage.setItem('userPets', JSON.stringify(userPets));
-        
+        if (!response.ok) {
+            const errorData = await response.json();
+            throw new Error(errorData.message || 'Failed to add pet');
+        }
         // Reset form and hide it
         e.target.reset();
         document.getElementById('addPetForm').style.display = 'none';
         document.getElementById('showAddPetForm').style.display = 'block';
         document.getElementById('imagePreview').innerHTML = '';
-        
         // Refresh the pets display
-        renderMyPets();
-        
+        await renderMyPets();
     } catch (error) {
         console.error('Error adding pet:', error);
         alert('Error adding pet. Please try again.');
@@ -716,7 +727,8 @@ async function handleDeletePet(id) {
         try {
             const result = await deletePet(id);
             if (result && result.message === 'Pet deleted successfully') {
-                renderMyPets();
+                // After deletion, re-fetch and render pets
+                await renderMyPets();
             } else {
                 alert('Failed to delete pet: ' + (result.message || 'Unknown error'));
                 console.error('Delete response:', result);
