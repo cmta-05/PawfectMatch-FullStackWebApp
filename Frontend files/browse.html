@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Browse Pets - Pawfect Match</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/styles.css">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #012312;">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <i class="fas fa-paw me-2"></i>Pawfect Match
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="browse.html">Browse Pets</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="my-pets.html">My Pets</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about.html">About Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="login.html">Login</a>
+                    </li>
+                    <li class="nav-item" id="userProfileContainer" style="display: none;">
+                        <!-- User profile dropdown will be inserted here by JavaScript -->
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container py-5">
+        <h1 class="mb-4">Available Pets</h1>
+        
+        <!-- Search and Filter Section -->
+        <div class="row mb-4">
+            <div class="col-md-6">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Search pets...">
+                    <button class="btn" type="button" style="background-color: #FFB031; color: #012312;">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="d-flex justify-content-md-end gap-2">
+                    <select class="form-select" style="max-width: 200px;">
+                        <option selected>Filter by Breed</option>
+                        <option>Labrador Retriever</option>
+                        <option>German Shepherd</option>
+                        <option>Golden Retriever</option>
+                        <option>French Bulldog</option>
+                        <option>Bulldog</option>
+                        <option>Poodle</option>
+                        <option>Beagle</option>
+                        <option>Rottweiler</option>
+                        <option>Other</option>
+                    </select>
+                    <select class="form-select" style="max-width: 200px;">
+                        <option selected>Sort by</option>
+                        <option>Newest</option>
+                        <option>Age</option>
+                        <option>Name</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <!-- Pet Cards Grid -->
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+            <!-- Pet Card 1 -->
+            <div class="col">
+                <div class="card h-100">
+                    <img src="images/golden retriever.jpg" class="card-img-top pet-image" alt="Pet 1" data-bs-toggle="modal" data-bs-target="#petModal" data-pet-id="1">
+                    <div class="card-body">
+                        <h5 class="card-title">Max</h5>
+                        <p class="card-text">
+                            <i class="fas fa-dog me-2"></i>Golden Retriever
+                            <span class="ms-3"><i class="fas fa-birthday-cake me-2"></i>2 years</span>
+                        </p>
+                        <p class="card-text">
+                            <i class="fas fa-map-marker-alt me-2"></i>New York, NY
+                        </p>
+                        <p class="card-text">Friendly and energetic Golden Retriever who loves playing fetch and going for long walks.</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Pet Card 2 -->
+            <div class="col">
+                <div class="card h-100">
+                    <img src="images/labrador.jpg" class="card-img-top pet-image" alt="Pet 2" data-bs-toggle="modal" data-bs-target="#petModal" data-pet-id="2">
+                    <div class="card-body">
+                        <h5 class="card-title">Luna</h5>
+                        <p class="card-text">
+                            <i class="fas fa-dog me-2"></i>Labrador Retriever
+                            <span class="ms-3"><i class="fas fa-birthday-cake me-2"></i>1 year</span>
+                        </p>
+                        <p class="card-text">
+                            <i class="fas fa-map-marker-alt me-2"></i>Los Angeles, CA
+                        </p>
+                        <p class="card-text">Sweet and playful Labrador who enjoys swimming and playing with toys.</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Pet Card 3 -->
+            <div class="col">
+                <div class="card h-100">
+                    <img src="images/german.jpg" class="card-img-top pet-image" alt="Pet 3" data-bs-toggle="modal" data-bs-target="#petModal" data-pet-id="3">
+                    <div class="card-body">
+                        <h5 class="card-title">Rex</h5>
+                        <p class="card-text">
+                            <i class="fas fa-dog me-2"></i>German Shepherd
+                            <span class="ms-3"><i class="fas fa-birthday-cake me-2"></i>3 years</span>
+                        </p>
+                        <p class="card-text">
+                            <i class="fas fa-map-marker-alt me-2"></i>Chicago, IL
+                        </p>
+                        <p class="card-text">Intelligent and loyal German Shepherd, great with training and protection.</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Pet Card 4 -->
+            <div class="col">
+                <div class="card h-100">
+                    <img src="images/husky.jpg" class="card-img-top pet-image" alt="Pet 4" data-bs-toggle="modal" data-bs-target="#petModal" data-pet-id="4">
+                    <div class="card-body">
+                        <h5 class="card-title">Storm</h5>
+                        <p class="card-text">
+                            <i class="fas fa-dog me-2"></i>Siberian Husky
+                            <span class="ms-3"><i class="fas fa-birthday-cake me-2"></i>2 years</span>
+                        </p>
+                        <p class="card-text">
+                            <i class="fas fa-map-marker-alt me-2"></i>Denver, CO
+                        </p>
+                        <p class="card-text">Energetic husky who loves snow and outdoor adventures.</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Pet Card 5 -->
+            <div class="col">
+                <div class="card h-100">
+                    <img src="images/poodlle.jpg" class="card-img-top pet-image" alt="Pet 5" data-bs-toggle="modal" data-bs-target="#petModal" data-pet-id="5">
+                    <div class="card-body">
+                        <h5 class="card-title">Bella</h5>
+                        <p class="card-text">
+                            <i class="fas fa-dog me-2"></i>Poodle
+                            <span class="ms-3"><i class="fas fa-birthday-cake me-2"></i>4 years</span>
+                        </p>
+                        <p class="card-text">
+                            <i class="fas fa-map-marker-alt me-2"></i>Miami, FL
+                        </p>
+                        <p class="card-text">Elegant and intelligent poodle, great with children and other pets.</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Pet Card 6 -->
+            <div class="col">
+                <div class="card h-100">
+                    <img src="images/english-bulldog.jpg" class="card-img-top pet-image" alt="Pet 6" data-bs-toggle="modal" data-bs-target="#petModal" data-pet-id="6">
+                    <div class="card-body">
+                        <h5 class="card-title">Winston</h5>
+                        <p class="card-text">
+                            <i class="fas fa-dog me-2"></i>English Bulldog
+                            <span class="ms-3"><i class="fas fa-birthday-cake me-2"></i>3 years</span>
+                        </p>
+                        <p class="card-text">
+                            <i class="fas fa-map-marker-alt me-2"></i>Boston, MA
+                        </p>
+                        <p class="card-text">Friendly bulldog who loves cuddles and short walks.</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Pet Card 7 -->
+            <div class="col">
+                <div class="card h-100">
+                    <img src="images/beagle.png" class="card-img-top pet-image" alt="Pet 7" data-bs-toggle="modal" data-bs-target="#petModal" data-pet-id="7">
+                    <div class="card-body">
+                        <h5 class="card-title">Charlie</h5>
+                        <p class="card-text">
+                            <i class="fas fa-dog me-2"></i>Beagle
+                            <span class="ms-3"><i class="fas fa-birthday-cake me-2"></i>1.5 years</span>
+                        </p>
+                        <p class="card-text">
+                            <i class="fas fa-map-marker-alt me-2"></i>Seattle, WA
+                        </p>
+                        <p class="card-text">Curious and friendly beagle with a great nose for adventure.</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Pet Card 8 -->
+            <div class="col">
+                <div class="card h-100">
+                    <img src="images/corgi.jpg" class="card-img-top pet-image" alt="Pet 8" data-bs-toggle="modal" data-bs-target="#petModal" data-pet-id="8">
+                    <div class="card-body">
+                        <h5 class="card-title">Coco</h5>
+                        <p class="card-text">
+                            <i class="fas fa-dog me-2"></i>Welsh Corgi
+                            <span class="ms-3"><i class="fas fa-birthday-cake me-2"></i>2 years</span>
+                        </p>
+                        <p class="card-text">
+                            <i class="fas fa-map-marker-alt me-2"></i>Portland, OR
+                        </p>
+                        <p class="card-text">Adorable corgi who loves herding and playing with toys.</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Pet Card 9 -->
+            <div class="col">
+                <div class="card h-100">
+                    <img src="images/rottweiler.jpg" class="card-img-top pet-image" alt="Pet 9" data-bs-toggle="modal" data-bs-target="#petModal" data-pet-id="9">
+                    <div class="card-body">
+                        <h5 class="card-title">Bruno</h5>
+                        <p class="card-text">
+                            <i class="fas fa-dog me-2"></i>Rottweiler
+                            <span class="ms-3"><i class="fas fa-birthday-cake me-2"></i>4 years</span>
+                        </p>
+                        <p class="card-text">
+                            <i class="fas fa-map-marker-alt me-2"></i>Houston, TX
+                        </p>
+                        <p class="card-text">Gentle giant with excellent guard dog instincts and a loving personality.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Pet Details Modal -->
+    <div class="modal fade" id="petModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title"></h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="position-relative" style="padding-top: 100%; overflow: hidden; border-radius: 8px;">
+                                <img src="/images/beagle.png" class="main-pet-image position-absolute top-0 start-0 w-100 h-100" alt="Pet" style="object-fit: cover;">
+                            </div>
+                            <div class="d-flex gap-2 mt-3">
+                                <div class="pet-thumbnail-wrapper" style="width: 80px; height: 80px; cursor: pointer;">
+                                    <img src="/images/beagle.png" class="pet-thumbnail w-100 h-100" alt="Pet thumbnail" style="object-fit: cover; border-radius: 4px;">
+                                </div>
+                                <div class="pet-thumbnail-wrapper" style="width: 80px; height: 80px; cursor: pointer;">
+                                    <img src="" class="pet-thumbnail w-100 h-100" alt="Pet thumbnail" style="object-fit: cover; border-radius: 4px;">
+                                </div>
+                                <div class="pet-thumbnail-wrapper" style="width: 80px; height: 80px; cursor: pointer;">
+                                    <img src="" class="pet-thumbnail w-100 h-100" alt="Pet thumbnail" style="object-fit: cover; border-radius: 4px;">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <p class="pet-breed mb-2"><i class="fas fa-dog me-2"></i>Breed: <span></span></p>
+                            <p class="pet-age mb-2"><i class="fas fa-birthday-cake me-2"></i>Age: <span></span></p>
+                            <p class="pet-location mb-3"><i class="fas fa-map-marker-alt me-2"></i>Location: <span></span></p>
+                            <h6 class="mt-4">About</h6>
+                            <p class="pet-description"></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer justify-content-between">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <div class="d-flex gap-2">
+                        <div class="match-request-container">
+                            <button type="button" class="btn btn-success" onclick="showMatchRequestForm()">
+                                <i class="fas fa-heart me-2"></i>Send Match Request
+                            </button>
+                            <div id="matchRequestForm" class="mt-2" style="display: none;">
+                                <select class="form-select mb-2" id="userPetSelect">
+                                    <option value="">Select your pet</option>
+                                </select>
+                                <textarea class="form-control mb-2" id="matchMessage" rows="2" placeholder="Add a message (optional)"></textarea>
+                                <div class="d-flex gap-2">
+                                    <button type="button" class="btn btn-secondary btn-sm" onclick="cancelMatchRequest()">Cancel</button>
+                                    <button type="button" class="btn btn-success btn-sm" onclick="submitMatchRequest()">Send Request</button>
+                                </div>
+                            </div>
+                        </div>
+                        <button type="button" class="btn favorite-btn" onclick="toggleFavorite(selectedPetId)" style="background-color: #FFB031;">
+                            <i class="far fa-heart"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="py-4" style="background-color: #012312; color: white;">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h5>Pawfect Match</h5>
+                    <p>Helping pets find their perfect matches since 2025.</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <p>&copy; 2025 Pawfect Match. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS -->
+    <script src="js/main.js"></script>
+    <script>
+        let selectedPetId = null;
+
+        // Initialize pet modal functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const petImages = document.querySelectorAll('.pet-image');
+            const petModal = document.getElementById('petModal');
+            const modal = new bootstrap.Modal(petModal);
+
+            petImages.forEach(img => {
+                img.addEventListener('click', function() {
+                    const petId = parseInt(this.dataset.petId);
+                    const card = this.closest('.card');
+                    
+                    // Get pet data from the card
+                    const name = card.querySelector('.card-title').textContent.trim();
+                    
+                    // Get breed and age
+                    const breedAgeContainer = card.querySelector('.card-text');
+                    let breed = '';
+                    let age = '';
+                    if (breedAgeContainer) {
+                        const text = breedAgeContainer.textContent;
+                        // First, find and remove the icon text
+                        const cleanText = text.replace(/.*dog me-2">/, '').trim();
+                        // The breed is everything before the first number
+                        breed = cleanText.replace(/\s+\d+.*$/, '').trim();
+                        // Get the age
+                        const ageMatch = text.match(/\d+\s*years?/);
+                        age = ageMatch ? ageMatch[0] : '';
+                    }
+                    
+                    // Get location
+                    const locationContainer = card.querySelector('.card-text:nth-child(3)');
+                    let location = '';
+                    if (locationContainer) {
+                        const text = locationContainer.textContent;
+                        location = text.replace(/.*marker-alt me-2">/, '').trim();
+                    }
+                    
+                    // Get description (last card-text)
+                    const description = card.querySelector('.card-text:last-child').textContent.trim();
+                    
+                    // Get the main image
+                    const mainImage = this.src;
+
+                    const pet = {
+                        id: petId,
+                        name: name,
+                        breed: breed,
+                        age: age,
+                        location: location,
+                        description: description,
+                        images: [mainImage]
+                    };
+
+                    console.log('Pet details:', pet); // Add this for debugging
+                    updatePetModal(pet);
+                    modal.show();
+                });
+            });
+
+            // Initialize thumbnail click handlers
+            const thumbnails = petModal.querySelectorAll('.pet-thumbnail');
+            thumbnails.forEach(thumb => {
+                thumb.addEventListener('click', function() {
+                    const mainImage = petModal.querySelector('.main-pet-image');
+                    mainImage.src = this.src;
+                });
+            });
+        });
+
+        function showMatchRequestForm() {
+            // Check if user is logged in by both localStorage and session state
+            const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true' && document.querySelector('#userProfileContainer').style.display !== 'none';
+            
+            if (!isLoggedIn) {
+                // Show login modal or redirect to login page
+                const loginPrompt = confirm('You need to be logged in to send match requests. Would you like to log in now?');
+                if (loginPrompt) {
+                    window.location.href = 'login.html';
+                }
+                return;
+            }
+
+            // Get user's pets from localStorage
+            const userPets = JSON.parse(localStorage.getItem('userPets') || '[]');
+            if (userPets.length === 0) {
+                alert('Please add your pets in the My Pets section before sending a match request.');
+                return;
+            }
+
+            // Populate the select dropdown with user's pets
+            const select = document.getElementById('userPetSelect');
+            select.innerHTML = '<option value="">Select your pet</option>';
+            userPets.forEach(pet => {
+                select.innerHTML += `<option value="${pet.id}">${pet.name} (${pet.breed})</option>`;
+            });
+
+            // Show the match request form
+            document.getElementById('matchRequestForm').style.display = 'block';
+        }
+
+        function cancelMatchRequest() {
+            document.getElementById('matchRequestForm').style.display = 'none';
+            document.getElementById('userPetSelect').value = '';
+            document.getElementById('matchMessage').value = '';
+        }
+
+        function submitMatchRequest() {
+            // Double check authentication before submitting
+            const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true' && document.querySelector('#userProfileContainer').style.display !== 'none';
+            
+            if (!isLoggedIn) {
+                const loginPrompt = confirm('Your session has expired. Please log in again to send match requests. Would you like to log in now?');
+                if (loginPrompt) {
+                    window.location.href = 'login.html';
+                }
+                return;
+            }
+
+            const userPetId = document.getElementById('userPetSelect').value;
+            const message = document.getElementById('matchMessage').value;
+
+            if (!userPetId) {
+                alert('Please select one of your pets to send a match request.');
+                return;
+            }
+
+            // Store match request in localStorage
+            const matchRequests = JSON.parse(localStorage.getItem('matchRequests') || '[]');
+            matchRequests.push({
+                id: Date.now(),
+                userPetId: userPetId,
+                targetPetId: selectedPetId,
+                message: message,
+                status: 'pending',
+                timestamp: new Date().toISOString(),
+                read: false
+            });
+            localStorage.setItem('matchRequests', JSON.stringify(matchRequests));
+
+            // Hide the form and show success message
+            cancelMatchRequest();
+            alert('Match request sent successfully!');
+            
+            // Update the UI to show new notification
+            updateAuthUI(true);
+        }
+
+        function updatePetModal(pet) {
+            selectedPetId = pet.id;
+            const modal = document.getElementById('petModal');
+            
+            // Update modal content
+            modal.querySelector('.modal-title').textContent = pet.name;
+            
+            // Update main image
+            const mainImage = modal.querySelector('.main-pet-image');
+            mainImage.onerror = function() {
+                if (this.src !== 'images/default-pet.jpg') {
+                    this.src = 'images/default-pet.jpg';
+                }
+                this.onerror = null;
+            };
+            mainImage.src = pet.images[0];
+
+            // Update pet details
+            modal.querySelector('.pet-breed span').textContent = pet.breed;
+            modal.querySelector('.pet-age span').textContent = pet.age;
+            modal.querySelector('.pet-location span').textContent = pet.location;
+            modal.querySelector('.pet-description').textContent = pet.description;
+
+            // Reset match request form
+            cancelMatchRequest();
+
+            // Update favorite button state
+            const favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
+            const isFavorite = favorites.some(fav => fav.id === pet.id);
+            const favoriteBtn = modal.querySelector('.favorite-btn');
+            const favoriteIcon = favoriteBtn.querySelector('i');
+            
+            if (isFavorite) {
+                favoriteIcon.classList.remove('far');
+                favoriteIcon.classList.add('fas');
+                favoriteBtn.style.backgroundColor = '#012312';
+                favoriteBtn.style.color = 'white';
+            } else {
+                favoriteIcon.classList.remove('fas');
+                favoriteIcon.classList.add('far');
+                favoriteBtn.style.backgroundColor = '#FFB031';
+                favoriteBtn.style.color = '#012312';
+            }
+
+            // Update thumbnails
+            const thumbnailContainer = modal.querySelector('.d-flex.gap-2.mt-3');
+            thumbnailContainer.innerHTML = ''; // Clear existing thumbnails
+
+            // Create thumbnail for the main image
+            const thumbWrapper = document.createElement('div');
+            thumbWrapper.className = 'pet-thumbnail-wrapper';
+            thumbWrapper.style.cssText = 'width: 80px; height: 80px; cursor: pointer;';
+
+            const thumbImg = document.createElement('img');
+            thumbImg.className = 'pet-thumbnail w-100 h-100';
+            thumbImg.alt = `${pet.name} thumbnail`;
+            thumbImg.style.cssText = 'object-fit: cover; border-radius: 4px;';
+            
+            // Set up error handling before setting src
+            thumbImg.onerror = function() {
+                if (this.src !== 'images/default-pet.jpg') {
+                    this.src = 'images/default-pet.jpg';
+                }
+                this.onerror = null;
+            };
+
+            thumbImg.src = pet.images[0];
+            thumbWrapper.appendChild(thumbImg);
+            thumbnailContainer.appendChild(thumbWrapper);
+        }
+
+        function toggleFavorite(petId) {
+            // Check authentication before toggling favorite
+            const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true' && document.querySelector('#userProfileContainer').style.display !== 'none';
+            
+            if (!isLoggedIn) {
+                const loginPrompt = confirm('You need to be logged in to favorite pets. Would you like to log in now?');
+                if (loginPrompt) {
+                    window.location.href = 'login.html';
+                }
+                return;
+            }
+
+            // Get the current pet data
+            const pet = pets.find(p => p.id === petId);
+            if (!pet) {
+                console.error('Pet not found');
+                return;
+            }
+
+            // Get current favorites
+            let favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
+            const isFavorite = favorites.some(fav => fav.id === petId);
+            
+            // Update favorites list
+            if (isFavorite) {
+                favorites = favorites.filter(fav => fav.id !== petId);
+            } else {
+                favorites.push(pet);
+            }
+            
+            // Save to localStorage
+            localStorage.setItem('favorites', JSON.stringify(favorites));
+
+            // Update button appearance
+            const btn = document.querySelector('.favorite-btn');
+            const icon = btn.querySelector('i');
+            
+            if (isFavorite) {
+                icon.classList.remove('fas');
+                icon.classList.add('far');
+                btn.style.backgroundColor = '#FFB031';
+                btn.style.color = '#012312';
+            } else {
+                icon.classList.remove('far');
+                icon.classList.add('fas');
+                btn.style.backgroundColor = '#012312';
+                btn.style.color = 'white';
+            }
+        }
+    </script>
+</body>
+</html> 

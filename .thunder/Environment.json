@@ -1,0 +1,20 @@
+{
+  "client": "Thunder Client",
+  "dateExported": "2024-04-20T00:00:00.000Z",
+  "version": "1.1",
+  "environments": [
+    {
+      "name": "Development",
+      "variables": [
+        {
+          "name": "baseUrl",
+          "value": "http://localhost:5000"
+        },
+        {
+          "name": "userId",
+          "value": ""
+        }
+      ]
+    }
+  ]
+} 

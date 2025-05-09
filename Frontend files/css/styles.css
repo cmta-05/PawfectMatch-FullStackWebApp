@@ -1,0 +1,207 @@
+/* Global Styles */
+:root {
+    --primary-color: #012312;
+    --secondary-color: #FFB031;
+    --light-color: #EAEAEA;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: var(--primary-color);
+}
+
+/* Navigation */
+.navbar {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-brand {
+    font-weight: 600;
+}
+
+/* Hero Section */
+.hero-section {
+    min-height: 500px;
+    display: flex;
+    align-items: center;
+}
+
+/* Cards */
+.card {
+    border: none;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.card-img-top {
+    height: 250px;
+    object-fit: cover;
+}
+
+/* Pet Images */
+.pet-image {
+    cursor: pointer;
+}
+
+.pet-thumbnail {
+    cursor: pointer;
+    transition: opacity 0.3s ease;
+}
+
+.pet-thumbnail:hover {
+    opacity: 0.8;
+}
+
+/* Buttons */
+.btn {
+    border-radius: 25px;
+    padding: 0.5rem 1.5rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Modal */
+.modal-content {
+    border-radius: 15px;
+    border: none;
+}
+
+.modal-header {
+    border-bottom: none;
+}
+
+.modal-footer {
+    border-top: none;
+}
+
+/* Forms */
+.form-control {
+    border-radius: 25px;
+    padding: 0.75rem 1.25rem;
+}
+
+.form-control:focus {
+    box-shadow: 0 0 0 0.25rem rgba(1, 35, 18, 0.25);
+    border-color: var(--primary-color);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .hero-section {
+        min-height: auto;
+        padding: 2rem 0;
+    }
+    
+    .card-img-top {
+        height: 200px;
+    }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--light-color);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--secondary-color);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--primary-color);
+}
+
+/* Admin Dashboard Styles */
+:root {
+    --admin-primary-color: #012312; /* Dark green */
+    --admin-accent-color: #FFB031;  /* Yellow */
+    --admin-background-color: #F8F9FA; /* Light background */
+    --admin-sidebar-text: #fff;
+    --admin-sidebar-hover: #FFB031;
+}
+
+.admin-dashboard-body {
+    background: var(--admin-background-color);
+}
+
+.admin-sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 250px;
+    background: var(--admin-primary-color);
+    border-right: none;
+    padding: 20px;
+    color: var(--admin-sidebar-text);
+    display: flex;
+    flex-direction: column;
+}
+
+.admin-sidebar h3 {
+    color: var(--admin-accent-color);
+}
+
+.admin-nav-link {
+    color: var(--admin-sidebar-text);
+    padding: 10px;
+    border-radius: 5px;
+    margin: 5px 0;
+    transition: background 0.2s, color 0.2s;
+}
+
+.admin-nav-link:hover, .admin-nav-link.active {
+    background-color: var(--admin-sidebar-hover);
+    color: var(--admin-primary-color);
+}
+
+.admin-main-content {
+    margin-left: 250px;
+    padding: 20px;
+    background: var(--admin-background-color);
+    min-height: 100vh;
+}
+
+.admin-card {
+    border: none;
+    box-shadow: 0 0 15px rgba(0,0,0,0.05);
+    margin-bottom: 20px;
+    background: #fff;
+}
+
+.admin-stats-card {
+    background: linear-gradient(45deg, var(--admin-primary-color), var(--admin-accent-color));
+    color: #fff;
+}
+
+.admin-action-btn {
+    margin: 0 5px;
+    background: var(--admin-accent-color);
+    color: var(--admin-primary-color);
+    border: none;
+}
+.admin-action-btn:hover {
+    background: var(--admin-primary-color);
+    color: var(--admin-accent-color);
+}
+
+#content > div {
+    display: none;
+}
+
+#content > div.active {
+    display: block;
+} 

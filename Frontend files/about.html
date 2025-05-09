@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Pawfect Match</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/styles.css">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #012312;">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <i class="fas fa-paw me-2"></i>Pawfect Match
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="browse.html">Browse Pets</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="my-pets.html">My Pets</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="about.html">About Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="login.html">Login</a>
+                    </li>
+                    <li class="nav-item" id="userProfileContainer" style="display: none;">
+                        <!-- User profile dropdown will be inserted here by JavaScript -->
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container py-5">
+        <h1 class="text-center mb-5">About Us</h1>
+        
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <h2 class="card-title">Our Mission</h2>
+                        <p class="card-text">
+                            At Pawfect Match, we're dedicated to helping dogs find their forever homes. 
+                            Our platform connects loving pet owners with potential adopters, making the 
+                            adoption process smoother and more enjoyable for everyone involved.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <h2 class="card-title">The Team</h2>
+                        <div class="row">
+                            <div class="col-md-4 mb-4">
+                                <div class="text-center">
+                                    <img src="images/dev1.png" alt="Developer 1" class="rounded-circle mb-3" style="width: 150px; height: 150px; object-fit: cover;">
+                                    <h4>Charlene Mae Adille</h4>
+                                    <p class="text-muted">Project Manager, GitHub Manager</p>
+                                    <p>Passionate about both technology and animal welfare, John brings 10 years of web development experience to the team.</p>
+                                    <div class="d-flex justify-content-center gap-3">
+                                        <a href="#" class="text-dark"><i class="fab fa-github fa-lg"></i></a>
+                                        <a href="#" class="text-dark"><i class="fab fa-linkedin fa-lg"></i></a>
+                                        <a href="#" class="text-dark"><i class="fab fa-twitter fa-lg"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4 mb-4">
+                                <div class="text-center">
+                                    <img src="images/dev2.png" alt="Developer 2" class="rounded-circle mb-3" style="width: 150px; height: 150px; object-fit: cover;">
+                                    <h4>Enrick Guiller Relos</h4>
+                                    <p class="text-muted">Frontend Developer</p>
+                                    <p>With a background in animal shelters and design, Jane ensures our platform is both beautiful and user-friendly.</p>
+                                    <div class="d-flex justify-content-center gap-3">
+                                        <a href="#" class="text-dark"><i class="fab fa-github fa-lg"></i></a>
+                                        <a href="#" class="text-dark"><i class="fab fa-linkedin fa-lg"></i></a>
+                                        <a href="#" class="text-dark"><i class="fab fa-twitter fa-lg"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4 mb-4">
+                                <div class="text-center">
+                                    <img src="images/dev3.png" alt="Developer 3" class="rounded-circle mb-3" style="width: 150px; height: 150px; object-fit: cover;">
+                                    <h4>Jhon Kenneth Aguilar</h4>
+                                    <p class="text-muted">Backend Developer</p>
+                                    <p>Specializing in database design and API development, Mike ensures our platform runs smoothly and securely.</p>
+                                    <div class="d-flex justify-content-center gap-3">
+                                        <a href="#" class="text-dark"><i class="fab fa-github fa-lg"></i></a>
+                                        <a href="#" class="text-dark"><i class="fab fa-linkedin fa-lg"></i></a>
+                                        <a href="#" class="text-dark"><i class="fab fa-twitter fa-lg"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-4">
+                                <div class="text-center">
+                                    <img src="images/dev4.png" alt="Developer 4" class="rounded-circle mb-3" style="width: 150px; height: 150px; object-fit: cover;">
+                                    <h4>Juno Alligah Romano</h4>
+                                    <p class="text-muted">Database Manager</p>
+                                    <p>Leading our mobile app development, Sarah brings expertise in creating seamless cross-platform experiences.</p>
+                                    <div class="d-flex justify-content-center gap-3">
+                                        <a href="#" class="text-dark"><i class="fab fa-github fa-lg"></i></a>
+                                        <a href="#" class="text-dark"><i class="fab fa-linkedin fa-lg"></i></a>
+                                        <a href="#" class="text-dark"><i class="fab fa-twitter fa-lg"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-4">
+                                <div class="text-center">
+                                    <img src="images/dev5.png" alt="Developer 5" class="rounded-circle mb-3" style="width: 150px; height: 150px; object-fit: cover;">
+                                    <h4>Hazel Marie Balunsay</h4>
+                                    <p class="text-muted">Documentation Officer</p>
+                                    <p>Ensuring the highest quality through comprehensive testing and user feedback implementation.</p>
+                                    <div class="d-flex justify-content-center gap-3">
+                                        <a href="#" class="text-dark"><i class="fab fa-github fa-lg"></i></a>
+                                        <a href="#" class="text-dark"><i class="fab fa-linkedin fa-lg"></i></a>
+                                        <a href="#" class="text-dark"><i class="fab fa-twitter fa-lg"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-body">
+                        <h2 class="card-title">Contact Us</h2>
+                        <p class="card-text">
+                            Have questions or suggestions? We'd love to hear from you!
+                        </p>
+                        <form>
+                            <div class="mb-3">
+                                <label for="name" class="form-label">Name</label>
+                                <input type="text" class="form-control" id="name">
+                            </div>
+                            <div class="mb-3">
+                                <label for="email" class="form-label">Email</label>
+                                <input type="email" class="form-control" id="email">
+                            </div>
+                            <div class="mb-3">
+                                <label for="message" class="form-label">Message</label>
+                                <textarea class="form-control" id="message" rows="4"></textarea>
+                            </div>
+                            <button type="submit" class="btn" style="background-color: #012312; color: white;">Send Message</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="py-4" style="background-color: #012312; color: white;">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h5>Pawfect Match</h5>
+                    <p>Helping pets find their perfect matches since 2025.</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <p>&copy; 2025 Pawfect Match. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS -->
+    <script src="js/main.js"></script>
+</body>
+</html> 

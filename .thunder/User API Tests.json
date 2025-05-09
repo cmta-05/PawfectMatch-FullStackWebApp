@@ -1,0 +1,99 @@
+{
+  "client": "Thunder Client",
+  "collectionName": "User API Tests",
+  "dateExported": "2024-04-20T00:00:00.000Z",
+  "version": "1.1",
+  "folders": [],
+  "requests": [
+    {
+      "id": "create-user",
+      "name": "Create User",
+      "url": "http://localhost:3000/api/users",
+      "method": "POST",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "body": {
+        "type": "json",
+        "raw": "{\n    \"name\": \"John Doe\",\n    \"email\": \"john@example.com\",\n    \"password\": \"password123\",\n    \"role\": \"user\"\n}"
+      }
+    },
+    {
+      "id": "get-all-users",
+      "name": "Get All Users",
+      "url": "http://localhost:3000/api/users",
+      "method": "GET"
+    },
+    {
+      "id": "get-single-user",
+      "name": "Get Single User",
+      "url": "http://localhost:3000/api/users/:id",
+      "method": "GET",
+      "params": [
+        {
+          "name": "id",
+          "value": "{{userId}}"
+        }
+      ]
+    },
+    {
+      "id": "update-user",
+      "name": "Update User",
+      "url": "http://localhost:3000/api/users/:id",
+      "method": "PUT",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "params": [
+        {
+          "name": "id",
+          "value": "{{userId}}"
+        }
+      ],
+      "body": {
+        "type": "json",
+        "raw": "{\n    \"name\": \"John Updated\",\n    \"email\": \"john.updated@example.com\"\n}"
+      }
+    },
+    {
+      "id": "delete-user",
+      "name": "Delete User",
+      "url": "http://localhost:3000/api/users/:id",
+      "method": "DELETE",
+      "params": [
+        {
+          "name": "id",
+          "value": "{{userId}}"
+        }
+      ]
+    },
+    {
+      "id": "test-invalid-user",
+      "name": "Test Invalid User Creation",
+      "url": "http://localhost:3000/api/users",
+      "method": "POST",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "body": {
+        "type": "json",
+        "raw": "{\n    \"name\": \"Invalid User\"\n}"
+      }
+    }
+  ],
+  "env": [
+    {
+      "name": "baseUrl",
+      "value": "http://localhost:3000"
+    }
+  ]
+} 
