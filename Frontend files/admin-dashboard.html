@@ -13,53 +13,106 @@
 <body class="admin-dashboard-body">
     <script>
         // Check authentication before showing dashboard
-        if (!sessionStorage.getItem('adminLoggedIn')) {
-            window.location.href = 'admin-login.html';
+        if (!sessionStorage.getItem('adminLoggedIn') || !localStorage.getItem('token')) {
+            window.location.href = 'login.html';
+        }
+
+        // Logout function
+        function logout() {
+            if (!confirm('Are you sure you want to log out?')) return;
+            // Clear all auth data
+            sessionStorage.removeItem('adminLoggedIn');
+            localStorage.removeItem('token');
+            localStorage.removeItem('userId');
+            localStorage.removeItem('userName');
+            localStorage.removeItem('userEmail');
+            localStorage.removeItem('isLoggedIn');
+            window.location.href = 'login.html';
         }
     </script>
     <div class="admin-sidebar">
-        <h3 class="mb-4 text-center">Pawfect Match Admin</h3>
+        <div class="sidebar-header">
+            <img src="images/pawfect-logo.png" alt="Pawfect Logo" class="admin-logo">
+            <h3>Pawfect Match</h3>
+        </div>
         <nav class="nav flex-column">
-            <a class="admin-nav-link active" href="#users" data-section="users">
-                <i class='bx bx-user'></i> Manage Users
+            <a class="admin-nav-link active" href="#users" data-section="users" title="Manage Users">
+                <i class='bx bx-user'></i> <span>Manage Users</span>
             </a>
-            <a class="admin-nav-link" href="#pets" data-section="pets">
-                <i class='bx bx-dog'></i> Moderate Pet Profiles
+            <a class="admin-nav-link" href="#pets" data-section="pets" title="Moderate Pet Profiles">
+                <i class='bx bx-shield-quarter'></i> <span>Moderate Pet Profiles</span>
             </a>
-            <a class="admin-nav-link" href="#messages" data-section="messages">
-                <i class='bx bx-message'></i> Messages & Complaints
+            <a class="admin-nav-link" href="#messages" data-section="messages" title="Contacts & Messages">
+                <i class='bx bx-message'></i> <span>Contacts & Messages</span>
             </a>
-            <a class="admin-nav-link" href="#reports" data-section="reports">
-                <i class='bx bx-line-chart'></i> Reports & Analytics
+            <a class="admin-nav-link" href="login.html" onclick="logout()" title="Logout">
+                <i class='bx bx-log-out'></i> <span>Logout</span>
             </a>
+            <div class="admin-sidebar-info">
+                <div class="admin-sidebar-welcome">Welcome, Admin!</div>
+                <div class="admin-sidebar-date" id="sidebarDate"></div>
+                <div class="admin-sidebar-tip">
+                    <i class='bx bx-bulb'></i> Tip: Review new pet profiles daily to keep the platform safe and fun!
+                </div>
+            </div>
+            <div class="admin-sidebar-footer">
+                <div class="admin-sidebar-about">
+                    <strong>Pawfect Match</strong> is dedicated to connecting pets with loving homes. Thank you for helping us keep the community safe and happy!
+                </div>
+            </div>
         </nav>
     </div>
 
     <div class="admin-main-content">
+        <div class="admin-header">
+            <div class="header-content">
+                <h2 id="currentSection">Admin Dashboard</h2>
+                <div class="admin-profile">
+                    <span class="admin-name">Admin User</span>
+                    <img src="images/admin-avatar.png" alt="Admin" class="admin-avatar">
+                </div>
+            </div>
+        </div>
         <div id="content">
             <!-- Users Section -->
             <div id="users" class="active">
-                <h2 class="mb-4">User Management</h2>
-                <div class="admin-card admin-stats-card mb-4 p-3">
-                    <div class="row">
-                        <div class="col-md-4">
-                            <h4>Total Users</h4>
-                            <h2>1,234</h2>
+                <div class="section-label">
+                    <i class='bx bx-user-circle'></i>
+                    <span>User Management</span>
+                </div>
+                <div class="section-desc">View, search, and manage all registered users. Delete users if necessary to keep the platform safe and active.</div>
+                <div class="admin-card admin-stats-card mb-4">
+                    <div class="row g-0">
+                        <div class="col-md-6 stat-box">
+                            <div class="stat-content">
+                                <i class='bx bx-user-circle stat-icon'></i>
+                                <div>
+                                    <h4>Total Users</h4>
+                                    <h2>1,234</h2>
+                                </div>
+                            </div>
                         </div>
-                        <div class="col-md-4">
-                            <h4>Active Users</h4>
-                            <h2>1,100</h2>
-                        </div>
-                        <div class="col-md-4">
-                            <h4>Blocked Users</h4>
-                            <h2>134</h2>
+                        <div class="col-md-6 stat-box">
+                            <div class="stat-content">
+                                <i class='bx bx-user-check stat-icon'></i>
+                                <div>
+                                    <h4>Active Users</h4>
+                                    <h2>1,100</h2>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
                 <div class="admin-card">
+                    <div class="card-header">
+                        <h4>User List</h4>
+                        <div class="header-actions">
+                            <input type="text" class="form-control search-input" placeholder="Search users...">
+                        </div>
+                    </div>
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table class="table">
+                            <table class="table admin-table">
                                 <thead>
                                     <tr>
                                         <th>User ID</th>
@@ -80,20 +133,16 @@
 
             <!-- Pets Section -->
             <div id="pets">
-                <h2 class="mb-4">Pet Profile Moderation</h2>
+                <div class="section-label">
+                    <i class='bx bx-shield-quarter'></i>
+                    <span>Pet Profile Moderation</span>
+                </div>
+                <div class="section-desc">Review and moderate all pet profiles submitted to the platform. Ensure all pet information is accurate and appropriate.</div>
                 <div class="admin-card admin-stats-card mb-4 p-3">
                     <div class="row">
                         <div class="col-md-4">
                             <h4>Total Pets</h4>
-                            <h2>2,567</h2>
-                        </div>
-                        <div class="col-md-4">
-                            <h4>Pending Approval</h4>
-                            <h2>45</h2>
-                        </div>
-                        <div class="col-md-4">
-                            <h4>Rejected</h4>
-                            <h2>23</h2>
+                            <h2 id="totalPetsCount">0</h2>
                         </div>
                     </div>
                 </div>
@@ -105,10 +154,12 @@
                                     <tr>
                                         <th>Pet ID</th>
                                         <th>Name</th>
-                                        <th>Owner</th>
+                                        <th>Type</th>
                                         <th>Breed</th>
+                                        <th>Age</th>
                                         <th>Gender</th>
-                                        <th>Action</th>
+                                        <th>Location</th>
+                                        <th>Owner Name</th>
                                     </tr>
                                 </thead>
                                 <tbody id="petTableBody">
@@ -122,20 +173,16 @@
 
             <!-- Messages Section -->
             <div id="messages">
-                <h2 class="mb-4">Messages & Complaints</h2>
+                <div class="section-label">
+                    <i class='bx bx-message'></i>
+                    <span>Contacts & Messages</span>
+                </div>
+                <div class="section-desc">View messages or inquiries sent by users. Stay informed and monitor user concerns in a timely manner.</div>
                 <div class="admin-card admin-stats-card mb-4 p-3">
                     <div class="row">
                         <div class="col-md-4">
                             <h4>New Messages</h4>
-                            <h2>25</h2>
-                        </div>
-                        <div class="col-md-4">
-                            <h4>Open Complaints</h4>
-                            <h2>12</h2>
-                        </div>
-                        <div class="col-md-4">
-                            <h4>Resolved</h4>
-                            <h2>156</h2>
+                             <h2 id="newMessagesCount">0</h2>
                         </div>
                     </div>
                 </div>
@@ -145,11 +192,10 @@
                             <table class="table">
                                 <thead>
                                     <tr>
-                                        <th>ID</th>
-                                        <th>From</th>
-                                        <th>Subject</th>
-                                        <th>Status</th>
-                                        <th>Actions</th>
+                                        <th>Date</th>
+                                        <th>Name</th>
+                                        <th>Email</th>
+                                        <th>Message</th>
                                     </tr>
                                 </thead>
                                 <tbody id="messageTableBody">
@@ -160,161 +206,258 @@
                     </div>
                 </div>
             </div>
-
-            <!-- Reports Section -->
-            <div id="reports">
-                <h2 class="mb-4">Reports & Analytics</h2>
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="admin-card mb-4">
-                            <div class="card-body">
-                                <h4>User Statistics</h4>
-                                <canvas id="userChart"></canvas>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="admin-card mb-4">
-                            <div class="card-body">
-                                <h4>Pet Profile Statistics</h4>
-                                <canvas id="petChart"></canvas>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="admin-card">
-                    <div class="card-body">
-                        <h4>Export Reports</h4>
-                        <div class="row mt-3">
-                            <div class="col-md-4">
-                                <button class="btn admin-action-btn w-100" onclick="exportReport('users')">
-                                    Export User Report
-                                </button>
-                            </div>
-                            <div class="col-md-4">
-                                <button class="btn admin-action-btn w-100" onclick="exportReport('pets')">
-                                    Export Pet Statistics
-                                </button>
-                            </div>
-                            <div class="col-md-4">
-                                <button class="btn admin-action-btn w-100" onclick="exportReport('complaints')">
-                                    Export Complaint Report
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
-        // Navigation
+         // Navigation
         document.querySelectorAll('.admin-nav-link').forEach(link => {
-            link.addEventListener('click', (e) => {
+            link.addEventListener('click', function(e) {
                 e.preventDefault();
-                const section = link.dataset.section;
+                const section = this.getAttribute('data-section');
                 
                 // Update active states
                 document.querySelectorAll('.admin-nav-link').forEach(l => l.classList.remove('active'));
-                document.querySelectorAll('#content > div').forEach(d => d.classList.remove('active'));
+                this.classList.add('active');
                 
-                link.classList.add('active');
+                // Show selected section
+                document.querySelectorAll('#content > div').forEach(div => div.classList.remove('active'));
                 document.getElementById(section).classList.add('active');
+
+                // Load data for the selected section
+                if (section === 'messages') {
+                    loadContactMessages();
+                }
             });
         });
 
-        // Sample data population
-        function populateSampleData() {
-            // Users table
+        // Function to fetch users from the backend
+        async function fetchUsers() {
+            try {
+                const response = await fetch('/users', {
+                    headers: {
+                        'Authorization': `Bearer ${localStorage.getItem('token')}`
+                    }
+                });
+                if (!response.ok) throw new Error('Failed to fetch users');
+                const users = await response.json();
+                return users;
+            } catch (error) {
+                console.error('Error fetching users:', error);
+                return [];
+            }
+        }
+
+        // Function to update user status
+        async function updateUserStatus(userId, newStatus) {
+            try {
+                const response = await fetch(`/users/${userId}`, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${localStorage.getItem('token')}`
+                    },
+                    body: JSON.stringify({ status: newStatus })
+                });
+                if (!response.ok) throw new Error('Failed to update user status');
+                return true;
+            } catch (error) {
+                console.error('Error updating user status:', error);
+                return false;
+            }
+        }
+
+        // Function to delete user
+        async function deleteUser(userId) {
+            if (!confirm('Are you sure you want to delete this user?')) return;
+            
+            try {
+                const response = await fetch(`/users/${userId}`, {
+                    method: 'DELETE',
+                    headers: {
+                        'Authorization': `Bearer ${localStorage.getItem('token')}`
+                    }
+                });
+                if (!response.ok) throw new Error('Failed to delete user');
+                return true;
+            } catch (error) {
+                console.error('Error deleting user:', error);
+                return false;
+            }
+        }
+
+        // Function to populate user data
+        async function populateUserData() {
+            const users = await fetchUsers();
+            window._allUsers = users; // Store for search
+            renderUserTable(users);
+        }
+
+        // Function to render user table
+        function renderUserTable(users) {
             const userTableBody = document.getElementById('userTableBody');
             userTableBody.innerHTML = '';
-            let users = JSON.parse(localStorage.getItem('users')) || [];
-            // Add admin user for display
-            users = [{ id: 0, name: 'Admin', email: 'admin@gmail.com', status: 'Active' }, ...users.map((u, i) => ({ id: i+1, name: u.name, email: u.email, status: 'Active' }))];
-
+            // Update stats
+            const totalUsers = users.length;
+            const activeUsers = users.filter(user => (user.status || 'active') === 'active').length;
+            document.querySelector('#users .col-md-6:nth-child(1) h2').textContent = totalUsers;
+            document.querySelector('#users .col-md-6:nth-child(2) h2').textContent = activeUsers;
+            // Populate table
             users.forEach(user => {
+                const status = user.status || 'active';
                 const row = `
-                    <tr>
-                        <td>${user.id}</td>
+                    <tr data-user-id="${user._id}">
+                        <td>${user._id}</td>
                         <td>${user.name}</td>
                         <td>${user.email}</td>
-                        <td><span class="badge bg-${user.status === 'Active' ? 'success' : 'danger'}">${user.status}</span></td>
+                        <td><span class="badge bg-${status === 'active' ? 'success' : 'danger'}">${status}</span></td>
                         <td>
-                            <button class="btn btn-sm admin-action-btn">
-                                ${user.status === 'Active' ? 'Block' : 'Unblock'}
-                            </button>
-                            <button class="btn btn-sm btn-danger admin-action-btn">Delete</button>
+                            <button class="btn btn-sm btn-danger admin-action-btn delete-btn">Delete</button>
                         </td>
                     </tr>
                 `;
                 userTableBody.innerHTML += row;
             });
-
-            // Initialize charts
-            const userCtx = document.getElementById('userChart').getContext('2d');
-            new Chart(userCtx, {
-                type: 'line',
-                data: {
-                    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
-                    datasets: [{
-                        label: 'New Users',
-                        data: [65, 59, 80, 81, 56, 55],
-                        borderColor: '#FFB031',
-                        tension: 0.1
-                    }]
-                }
-            });
-
-            // Pet Profile Statistics by Breed
-            const petCtx = document.getElementById('petChart').getContext('2d');
-            let pets = JSON.parse(localStorage.getItem('pets')) || [];
-            // Count pets by breed
-            const breedCounts = {};
-            pets.forEach(pet => {
-                const breed = pet.breed || 'Unknown';
-                breedCounts[breed] = (breedCounts[breed] || 0) + 1;
-            });
-            const breedLabels = Object.keys(breedCounts);
-            const breedData = Object.values(breedCounts);
-            const breedColors = ['#FFB031', '#012312', '#87CEEB', '#FF69B4', '#98FB98', '#FFD700', '#8A2BE2', '#FF6347', '#20B2AA', '#A0522D'];
-            new Chart(petCtx, {
-                type: 'pie',
-                data: {
-                    labels: breedLabels,
-                    datasets: [{
-                        data: breedData,
-                        backgroundColor: breedLabels.map((_, i) => breedColors[i % breedColors.length])
-                    }]
-                }
-            });
         }
 
-        // Export function
-        function exportReport(type) {
-            alert(`Exporting ${type} report...`);
-            // Implement actual export functionality
+        // Search users functionality
+        document.querySelector('.search-input').addEventListener('input', function() {
+            const query = this.value.trim().toLowerCase();
+            const users = window._allUsers || [];
+            if (!query) {
+                renderUserTable(users);
+                return;
+            }
+            const filtered = users.filter(user =>
+                (user.name && user.name.toLowerCase().includes(query)) ||
+                (user.email && user.email.toLowerCase().includes(query))
+            );
+            renderUserTable(filtered);
+        });
+
+        // Event delegation for delete only
+        document.getElementById('userTableBody').addEventListener('click', async function(e) {
+            const tr = e.target.closest('tr');
+            if (!tr) return;
+            const userId = tr.getAttribute('data-user-id');
+
+            if (e.target.classList.contains('delete-btn')) {
+                const success = await deleteUser(userId);
+                if (success) await populateUserData();
+                else alert('Failed to delete user');
+            }
+        });
+
+        // Fetch pets from backend
+        async function fetchPets() {
+            try {
+                const response = await fetch('/api/pets', {
+                    headers: {
+                        'Authorization': `Bearer ${localStorage.getItem('token')}`
+                    }
+                });
+                if (!response.ok) throw new Error('Failed to fetch pets');
+                return await response.json();
+            } catch (error) {
+                console.error('Error fetching pets:', error);
+                return [];
+            }
+        }
+
+        // Populate pets table in admin dashboard
+        async function populatePetData() {
+            const petTableBody = document.getElementById('petTableBody');
+            petTableBody.innerHTML = '<tr><td colspan="7" style="text-align:center; padding: 2rem; color: #888;"><div class="spinner-border text-warning" role="status" style="width:2.5rem;height:2.5rem;"></div><div>Loading pets...</div></td></tr>';
+            try {
+                const pets = await fetchPets();
+                petTableBody.innerHTML = '';
+                const totalPetsCountElem = document.getElementById('totalPetsCount');
+                if (totalPetsCountElem) {
+                    totalPetsCountElem.textContent = pets.length;
+                }
+                pets.forEach(pet => {
+                    const row = `
+                        <tr>
+                            <td>${pet._id}</td>
+                            <td>${pet.name}</td>
+                            <td>${pet.type}</td>
+                            <td>${pet.breed}</td>
+                            <td>${pet.age}</td>
+                            <td>${pet.gender}</td>
+                            <td>${pet.location}</td>
+                            <td>${pet.ownerName || 'Unknown'}</td>
+                        </tr>
+                    `;
+                    petTableBody.innerHTML += row;
+                });
+                if (pets.length === 0) {
+                    petTableBody.innerHTML = '<tr><td colspan="7" style="text-align:center; color: #888;">No pets found.</td></tr>';
+                }
+            } catch (error) {
+                petTableBody.innerHTML = '<tr><td colspan="7" style="text-align:center; color: #d9534f;">Failed to load pets. Please try again.</td></tr>';
+            }
+        }
+
+          // Function to load contact messages
+        async function loadContactMessages() {
+            try {
+                const response = await fetch('/api/contact/all', {
+                    headers: {
+                        'Authorization': `Bearer ${localStorage.getItem('token')}`
+                    }
+                });
+                
+                if (!response.ok) {
+                    throw new Error('Failed to fetch messages');
+                }
+
+                const data = await response.json();
+                const messageTableBody = document.getElementById('messageTableBody');
+                const newMessagesCount = document.getElementById('newMessagesCount');
+                
+                // Update message count
+                newMessagesCount.textContent = data.data.length;
+
+                // Clear existing table content
+                messageTableBody.innerHTML = '';
+
+                // Add messages to table
+                data.data.forEach(contact => {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td>${new Date(contact.createdAt).toLocaleDateString()}</td>
+                        <td>${contact.name}</td>
+                        <td>${contact.email}</td>
+                        <td>${contact.message}</td>
+                    `;
+                    messageTableBody.appendChild(row);
+                });
+            } catch (error) {
+                console.error('Error loading messages:', error);
+                alert('Error loading messages. Please try again.');
+            }
+        }
+
+        // Load messages when messages section is active
+        if (document.getElementById('messages').classList.contains('active')) {
+            loadContactMessages();
         }
 
         // Add logout functionality
-        document.addEventListener('DOMContentLoaded', () => {
-            // Add logout button to sidebar
-            const sidebar = document.querySelector('.admin-sidebar');
-            const logoutBtn = document.createElement('a');
-            logoutBtn.className = 'admin-nav-link';
-            logoutBtn.innerHTML = '<i class="bx bx-log-out"></i> Logout';
-            logoutBtn.style.marginTop = 'auto';
-            logoutBtn.style.cursor = 'pointer';
-            logoutBtn.onclick = function() {
-                sessionStorage.removeItem('adminLoggedIn');
-                window.location.href = 'index.html';
-            };
-            sidebar.appendChild(logoutBtn);
-
-            populateSampleData();
+        document.addEventListener('DOMContentLoaded', async () => {
+            // Initial data load
+            await populateUserData();
+            await populatePetData();
         });
+
+        // Set today's date in the sidebar
+        const sidebarDate = document.getElementById('sidebarDate');
+        if (sidebarDate) {
+            const options = { year: 'numeric', month: 'long', day: 'numeric' };
+            sidebarDate.textContent = new Date().toLocaleDateString(undefined, options);
+        }
     </script>
 </body>
 </html> 

@@ -17,8 +17,8 @@
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #012312;">
         <div class="container">
-            <a class="navbar-brand" href="#">
-                <i class="fas fa-paw me-2"></i>Pawfect Match
+            <a class="navbar-brand" href="index.html">
+                <img src="./images/pawfect-main-logo.png" alt="">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
@@ -49,56 +49,988 @@
     </nav>
 
     <!-- Hero Section -->
-    <section class="hero-section py-5" style="background-color: #fff8ee;">
-        <div class="container">
+    <section class="hero-section py-5">
+        <div class="hero-bg-pattern"></div>
+        <div class="container position-relative">
             <div class="row align-items-center">
                 <div class="col-md-6">
-                    <h1 class="display-4 fw-bold mb-4">Find the Perfect Breeding Partner for your Dog</h1>
-                    <p class="lead mb-4">Connect with responsible dog owners and breeders to find ideal matches for your pet’s lineage and health.</p>
-                    <a href="login.html" class="btn btn-lg" style="background-color: #FFB031; color: #012312;">Login/Register</a>
+                    <div class="hero-content">
+                        <span class="hero-badge">Welcome to Pawfect Match</span>
+                        <h1 class="display-4 fw-bold mb-4 text-gradient">Find the Perfect Breeding Partner for your Dog</h1>
+                        <p class="lead mb-4 text-muted">Connect with responsible dog owners and breeders to find ideal matches for your pet's lineage and health.</p>
+                        <div class="d-flex gap-3">
+                            <a href="login.html" class="btn btn-lg btn-primary-custom">
+                                <i class="fas fa-user-plus me-2"></i>Login/Register
+                            </a>
+                            <a href="browse.html" class="btn btn-lg btn-outline-custom">
+                                <i class="fas fa-paw me-2"></i>Browse Pets
+                            </a>
+                        </div>
+                        <div class="hero-stats mt-5">
+                            <div class="stat-item">
+                                <span class="stat-number">500+</span>
+                                <span class="stat-label">Happy Matches</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-number">1000+</span>
+                                <span class="stat-label">Active Users</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-number">50+</span>
+                                <span class="stat-label">Breeds</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="col-md-6">
-                    <img src="images/main pet.png" alt="Happy pets" class="img-fluid rounded">
+                    <div class="hero-image-wrapper">
+                        <img src="images/main pet.png" alt="Happy pets" class="img-fluid rounded hero-image">
+                        <div class="hero-shape"></div>
+                        <div class="floating-badge">
+                            <i class="fas fa-heart"></i>
+                            <span>Trusted Platform</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Features Section -->
-    <section class="py-5">
+    <section class="py-5 features-section">
         <div class="container">
-            <h2 class="text-center mb-5">Why Choose Pawfect Match?</h2>
-            <div class="row">
-                <div class="col-md-4 mb-4">
-                    <div class="card h-100">
-                        <div class="card-body text-center">
-                            <i class="fas fa-heart fa-3x mb-3" style="color: #FFB031;"></i>
-                            <h3 class="card-title">Selective Matches</h3>
+            <div class="section-header text-center mb-5">
+                <span class="section-subtitle">Why Choose Us</span>
+                <h2 class="section-title">
+                    <span class="title-underline">Why Choose Pawfect Match?</span>
+                </h2>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="feature-card h-100">
+                        <div class="card-body text-center p-4">
+                            <div class="feature-icon-wrapper mb-4">
+                                <i class="fas fa-heart fa-3x"></i>
+                            </div>
+                            <h3 class="card-title h4 mb-3">Selective Matches</h3>
                             <p class="card-text">Find breeding partners that complement your dog's breed, temperament, and genetics.</p>
+                            <a href="#" class="feature-link">Learn More <i class="fas fa-arrow-right ms-2"></i></a>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4 mb-4">
-                    <div class="card h-100">
-                        <div class="card-body text-center">
-                            <i class="fas fa-shield-alt fa-3x mb-3" style="color: #012312;"></i>
-                            <h3 class="card-title">Trusted Profile</h3>
+                <div class="col-md-4">
+                    <div class="feature-card h-100">
+                        <div class="card-body text-center p-4">
+                            <div class="feature-icon-wrapper mb-4">
+                                <i class="fas fa-shield-alt fa-3x"></i>
+                            </div>
+                            <h3 class="card-title h4 mb-3">Trusted Profile</h3>
                             <p class="card-text">All breeders and dog owners are verified for health records and ethical breeding practices.</p>
+                            <a href="#" class="feature-link">Learn More <i class="fas fa-arrow-right ms-2"></i></a>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4 mb-4">
-                    <div class="card h-100">
-                        <div class="card-body text-center">
-                            <i class="fas fa-comments fa-3x mb-3" style="color: #FFB031;"></i>
-                            <h3 class="card-title">Easy Communication</h3>
+                <div class="col-md-4">
+                    <div class="feature-card h-100">
+                        <div class="card-body text-center p-4">
+                            <div class="feature-icon-wrapper mb-4">
+                                <i class="fas fa-comments fa-3x"></i>
+                            </div>
+                            <h3 class="card-title h4 mb-3">Easy Communication</h3>
                             <p class="card-text">Easily chat and coordinate with potential matches and their owners.</p>
+                            <a href="#" class="feature-link">Learn More <i class="fas fa-arrow-right ms-2"></i></a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
+
+    <!-- How it Works Section -->
+    <section class="py-5 how-it-works-section-alt">
+        <div class="container">
+            <div class="section-header text-center mb-5">
+                <span class="section-subtitle">Simple Process</span>
+                <h2 class="section-title">
+                    <span class="title-underline">How It Works</span>
+                </h2>
+            </div>
+            <div class="row align-items-center justify-content-center">
+                <div class="col-lg-5 d-none d-lg-flex justify-content-center align-items-center mascot-col">
+                    <div class="mascot-wrapper">
+                        <img src="images/home.png" alt="Mascot" class="img-fluid mascot-illustration" />
+                        <div class="mascot-decoration"></div>
+                    </div>
+                </div>
+                <div class="col-lg-7">
+                    <div class="how-steps-list">
+                        <div class="how-step-card">
+                            <div class="how-step-icon"><i class="fas fa-user-plus"></i></div>
+                            <div>
+                                <h3 class="how-step-title">Create Your Profile</h3>
+                                <p class="how-step-desc">Sign up and create a detailed profile for your pet, including breed, health records, and preferences.</p>
+                            </div>
+                        </div>
+                        <div class="how-step-card">
+                            <div class="how-step-icon"><i class="fas fa-search"></i></div>
+                            <div>
+                                <h3 class="how-step-title">Browse Matches</h3>
+                                <p class="how-step-desc">Use our advanced search to find compatible breeding partners based on your criteria.</p>
+                            </div>
+                        </div>
+                        <div class="how-step-card">
+                            <div class="how-step-icon"><i class="fas fa-comments"></i></div>
+                            <div>
+                                <h3 class="how-step-title">Connect & Chat</h3>
+                                <p class="how-step-desc">Message potential matches and discuss breeding arrangements through our secure platform.</p>
+                            </div>
+                        </div>
+                        <div class="how-step-card">
+                            <div class="how-step-icon"><i class="fas fa-heart"></i></div>
+                            <div>
+                                <h3 class="how-step-title">Make a Match</h3>
+                                <p class="how-step-desc">Finalize arrangements and begin the journey of responsible breeding with your perfect match.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Popular Breeds Section -->
+    <section class="py-5 breeds-section">
+        <div class="container">
+            <div class="section-header text-center mb-5">
+                <span class="section-subtitle">Popular Breeds</span>
+                <h2 class="section-title">
+                    <span class="title-underline">Find Your Perfect Match</span>
+                </h2>
+            </div>
+            <div class="breeds-grid">
+                <div class="breed-card">
+                    <div class="breed-image">
+                        <img src="images/beagle.png" alt="Beagle">
+                        <div class="breed-overlay">
+                            <span class="breed-name"></span>Beagle</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="breed-card">
+                    <div class="breed-image">
+                        <img src="images/corgi.jpg" alt="Corgi">
+                        <div class="breed-overlay">
+                            <span class="breed-name">Corgi</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="breed-card">
+                    <div class="breed-image">
+                        <img src="images/poodle.jpg" alt="Poodle">
+                        <div class="breed-overlay">
+                            <span class="breed-name">Poodle</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="breed-card">
+                    <div class="breed-image">
+                        <img src="images/husky.jpg" alt="Husky">
+                        <div class="breed-overlay">
+                            <span class="breed-name">Husky</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center mt-5">
+                <a href="browse.html" class="btn btn-lg btn-primary-custom">
+                    <i class="fas fa-paw me-2"></i>View All Breeds
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="py-5 testimonials-section">
+        <div class="container">
+            <div class="section-header text-center mb-5">
+                <span class="section-subtitle">Success Stories</span>
+                <h2 class="section-title">
+                    <span class="title-underline">Happy Pet Parents</span>
+                </h2>
+            </div>
+            <div class="testimonials-slider">
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <div class="quote-icon">
+                            <i class="fas fa-quote-left"></i>
+                        </div>
+                        <p class="testimonial-text">"Pawfect Match helped me find the perfect breeding partner for my Golden Retriever. The process was smooth and professional."</p>
+                        <div class="testimonial-author">
+                            <img src="images/user1.jpg" alt="Sarah Johnson" class="author-image">
+                            <div class="author-info">
+                                <h4 class="author-name">Sarah Johnson</h4>
+                                <p class="author-title">Golden Retriever Owner</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <div class="quote-icon">
+                            <i class="fas fa-quote-left"></i>
+                        </div>
+                        <p class="testimonial-text">"The platform's verification process gave me confidence in finding a responsible breeder. Highly recommended!"</p>
+                        <div class="testimonial-author">
+                            <img src="images/user2.jpg" alt="Michael Chen" class="author-image">
+                            <div class="author-info">
+                                <h4 class="author-name">Michael Chen</h4>
+                                <p class="author-title">German Shepherd Owner</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-5 cta-section">
+        <div class="container">
+            <div class="cta-wrapper">
+                <div class="cta-content">
+                    <h2 class="cta-title">Ready to Find Your Perfect Match?</h2>
+                    <p class="cta-text">Join thousands of happy pet parents who found their ideal breeding partners through Pawfect Match.</p>
+                    <div class="cta-buttons">
+                        <a href="login.html" class="btn btn-lg btn-primary-custom">
+                            <i class="fas fa-user-plus me-2"></i>Get Started
+                        </a>
+                        <a href="about.html" class="btn btn-lg btn-outline-custom">
+                            <i class="fas fa-info-circle me-2"></i>Learn More
+                        </a>
+                    </div>
+                </div>
+                <div class="cta-image">
+                    <img src="images/happy.png" alt="Happy Dogs">
+                    <div class="cta-shape"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <style>
+        /* Enhanced Hero Section Styles */
+        .hero-section {
+            position: relative;
+            overflow: hidden;
+            padding: 120px 0;
+            background: linear-gradient(135deg, #fff8ee 0%, #fff0d9 100%);
+        }
+
+        .hero-bg-pattern {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23FFB031' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2V6h4V4H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            opacity: 0.5;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: rgba(255, 176, 49, 0.1);
+            color: #FFB031;
+            padding: 8px 16px;
+            border-radius: 50px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .text-gradient {
+            background: linear-gradient(45deg, #012312, #2a4d3a);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-size: 3.5rem;
+            line-height: 1.2;
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .stat-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #FFB031;
+            line-height: 1;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: #666;
+            margin-top: 0.5rem;
+        }
+
+        .hero-image-wrapper {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-image {
+            border-radius: 30px;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.1);
+            transform: perspective(1000px) rotateY(-5deg);
+            transition: all 0.5s ease;
+        }
+
+        .hero-image:hover {
+            transform: perspective(1000px) rotateY(0deg) scale(1.02);
+        }
+
+        .hero-shape {
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: #FFB031;
+            opacity: 0.1;
+            border-radius: 50%;
+            top: -100px;
+            right: -100px;
+            z-index: -1;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .floating-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: white;
+            padding: 12px 20px;
+            border-radius: 50px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .floating-badge i {
+            color: #FFB031;
+        }
+
+        /* Enhanced Button Styles */
+        .btn-primary-custom {
+            background: linear-gradient(45deg, #FFB031, #ffc107);
+            border: none;
+            color: #012312;
+            font-weight: 600;
+            padding: 15px 35px;
+            border-radius: 50px;
+            transition: all 0.4s ease;
+            box-shadow: 0 10px 20px rgba(255, 176, 49, 0.2);
+        }
+
+        .btn-primary-custom:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(255, 176, 49, 0.3);
+            color: #012312;
+        }
+
+        .btn-outline-custom {
+            border: 2px solid #FFB031;
+            color: #012312;
+            font-weight: 600;
+            padding: 15px 35px;
+            border-radius: 50px;
+            transition: all 0.4s ease;
+            background: transparent;
+        }
+
+        .btn-outline-custom:hover {
+            background: #FFB031;
+            color: #012312;
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(255, 176, 49, 0.2);
+        }
+
+        /* Enhanced Features Section Styles */
+        .features-section {
+            background: linear-gradient(180deg, #ffffff 0%, #fff8ee 100%);
+            padding: 120px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .section-header {
+            margin-bottom: 60px;
+        }
+
+        .section-subtitle {
+            color: #FFB031;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .section-title {
+            color: #012312;
+            font-weight: 800;
+            position: relative;
+            font-size: 2.8rem;
+        }
+
+        .title-underline {
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .title-underline::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 120px;
+            height: 4px;
+            background: linear-gradient(90deg, #FFB031, #ffc107);
+            border-radius: 2px;
+        }
+
+        .feature-card {
+            background: #ffffff;
+            border-radius: 25px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05);
+            transition: all 0.5s ease;
+            border: none;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, rgba(255, 176, 49, 0.1), rgba(255, 193, 7, 0.1));
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-20px);
+            box-shadow: 0 30px 60px rgba(255, 176, 49, 0.15);
+        }
+
+        .feature-card:hover::before {
+            opacity: 1;
+        }
+
+        .feature-icon-wrapper {
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, #fff8ee 0%, #fff0d9 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto;
+            transition: all 0.5s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-icon-wrapper::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, #FFB031, #ffc107);
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .feature-card:hover .feature-icon-wrapper::before {
+            opacity: 1;
+        }
+
+        .feature-icon-wrapper i {
+            position: relative;
+            z-index: 1;
+            color: #FFB031;
+            transition: all 0.5s ease;
+            font-size: 2.5rem;
+        }
+
+        .feature-card:hover .feature-icon-wrapper i {
+            color: #ffffff;
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .feature-link {
+            color: #FFB031;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            margin-top: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .feature-link:hover {
+            color: #012312;
+            transform: translateX(5px);
+        }
+
+        /* Enhanced How It Works Section Styles */
+        .how-it-works-section-alt {
+            background: linear-gradient(135deg, #FFF8EA 0%, #fff6e3 100%);
+            position: relative;
+            overflow: hidden;
+            padding: 120px 0;
+        }
+
+        .mascot-wrapper {
+            position: relative;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .mascot-illustration {
+            height: 150%;
+            max-height: 800px;
+            width: auto;
+            max-width: 100%;
+            object-fit: contain;
+            border-radius: 1.5rem;
+            background: transparent;
+            padding: 0;
+            display: block;
+            margin: 0 auto;
+            filter: drop-shadow(0 30px 60px rgba(0, 0, 0, 0.1));
+            transition: all 0.5s ease;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .mascot-decoration {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: #FFB031;
+            opacity: 0.1;
+            border-radius: 50%;
+            z-index: -1;
+            animation: pulse 4s ease-in-out infinite;
+        }
+
+        .how-steps-list {
+            display: flex;
+            flex-direction: column;
+            gap: 2.5rem;
+            height: 100%;
+            justify-content: center;
+        }
+
+        .how-step-card {
+            display: flex;
+            align-items: center;
+            background: #ffffff;
+            border-radius: 25px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05);
+            padding: 2.5rem;
+            gap: 2rem;
+            transition: all 0.5s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .how-step-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(180deg, #FFB031, #ffc107);
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .how-step-card:hover {
+            box-shadow: 0 30px 60px rgba(255, 176, 49, 0.15);
+            transform: translateX(15px);
+        }
+
+        .how-step-card:hover::before {
+            opacity: 1;
+        }
+
+        .how-step-icon {
+            background: linear-gradient(135deg, #FFB031, #ffc107);
+            color: #ffffff;
+            border-radius: 50%;
+            width: 80px;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.2rem;
+            box-shadow: 0 15px 30px rgba(255, 176, 49, 0.2);
+            flex-shrink: 0;
+            transition: all 0.5s ease;
+        }
+
+        .how-step-card:hover .how-step-icon {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .how-step-title {
+            font-size: 1.35rem;
+            font-weight: 700;
+            color: #012312;
+            margin-bottom: 0.75rem;
+        }
+
+        .how-step-desc {
+            color: #666;
+            font-size: 1.1rem;
+            margin-bottom: 0;
+            line-height: 1.6;
+        }
+
+        /* Breeds Section Styles */
+        .breeds-section {
+            background: linear-gradient(180deg, #ffffff 0%, #fff8ee 100%);
+            padding: 120px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .breeds-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .breed-card {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            transition: all 0.5s ease;
+        }
+
+        .breed-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 30px 60px rgba(255, 176, 49, 0.2);
+        }
+
+        .breed-image {
+            position: relative;
+            padding-top: 100%;
+            overflow: hidden;
+        }
+
+        .breed-image img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .breed-card:hover .breed-image img {
+            transform: scale(1.1);
+        }
+
+        .breed-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 2rem;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+            color: white;
+            transform: translateY(100%);
+            transition: transform 0.5s ease;
+        }
+
+        .breed-card:hover .breed-overlay {
+            transform: translateY(0);
+        }
+
+        .breed-name {
+            font-size: 1.25rem;
+            font-weight: 600;
+        }
+
+        /* Testimonials Section Styles */
+        .testimonials-section {
+            background: linear-gradient(135deg, #fff8ee 0%, #fff0d9 100%);
+            padding: 120px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .testimonials-slider {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .testimonial-card {
+            background: white;
+            border-radius: 25px;
+            padding: 2.5rem;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05);
+            transition: all 0.5s ease;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 30px 60px rgba(255, 176, 49, 0.15);
+        }
+
+        .quote-icon {
+            color: #FFB031;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .testimonial-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #666;
+            margin-bottom: 2rem;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .author-image {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .author-name {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #012312;
+            margin-bottom: 0.25rem;
+        }
+
+        .author-title {
+            font-size: 0.9rem;
+            color: #666;
+            margin: 0;
+        }
+
+        /* CTA Section Styles */
+        .cta-section {
+            background: linear-gradient(135deg, #012312 0%, #1a3d2a 100%);
+            padding: 120px 0;
+            position: relative;
+            overflow: hidden;
+            color: white;
+        }
+
+        .cta-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .cta-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .cta-title {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        .cta-text {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            margin-bottom: 2.5rem;
+            opacity: 0.9;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .cta-image {
+            position: relative;
+        }
+
+        .cta-image img {
+            width: 100%;
+            border-radius: 30px;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.2);
+        }
+
+        .cta-shape {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: #FFB031;
+            opacity: 0.1;
+            border-radius: 50%;
+            top: -50px;
+            right: -50px;
+            z-index: -1;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        /* Animations */
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+                opacity: 0.1;
+            }
+            50% {
+                transform: scale(1.1);
+                opacity: 0.15;
+            }
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 991px) {
+            .hero-section {
+                padding: 80px 0;
+            }
+            
+            .text-gradient {
+                font-size: 2.8rem;
+            }
+            
+            .hero-stats {
+                justify-content: center;
+            }
+            
+            .how-it-works-section-alt .mascot-illustration {
+                display: none;
+            }
+            
+            .how-steps-list {
+                gap: 2rem;
+            }
+            
+            .how-step-card {
+                padding: 2rem;
+            }
+            
+            .breeds-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .testimonials-slider {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-wrapper {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .cta-buttons {
+                justify-content: center;
+            }
+
+            .cta-image {
+                margin-top: 3rem;
+            }
+        }
+
+        @media (max-width: 575px) {
+            .hero-section {
+                text-align: center;
+                padding: 60px 0;
+            }
+            
+            .text-gradient {
+                font-size: 2.2rem;
+            }
+            
+            .hero-image {
+                margin-top: 2rem;
+            }
+            
+            .hero-stats {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+            
+            .how-step-card {
+                flex-direction: column;
+                align-items: center;
+                gap: 1.5rem;
+                text-align: center;
+                padding: 1.5rem;
+            }
+            
+            .how-step-icon {
+                margin: 0 auto 1rem;
+            }
+            
+            .breeds-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-title {
+                font-size: 2.2rem;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+            }
+        }
+    </style>
 
     <!-- Login Modal -->
     <div class="modal fade" id="loginModal" tabindex="-1">
@@ -118,7 +1050,7 @@
                             <label for="password" class="form-label">Password</label>
                             <input type="password" class="form-control" id="password">
                         </div>
-                        <button type="submit" class="btn w-100" style="background-color: #012312; color: white;">Login</button>
+                        <button type="submit" class="btn btn-primary-custom w-100">Login</button>
                     </form>
                 </div>
             </div>

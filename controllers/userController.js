@@ -1,6 +1,8 @@
-const User = require('../models/user');
+const User = require('../models/User');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+const Pet = require('../models/Pet');
+const MatchRequest = require('../models/MatchRequest');
 
 // Create user
 exports.createUser = async (req, res) => {
@@ -58,7 +60,7 @@ exports.getUser = async (req, res) => {
 // Update user
 exports.updateUser = async (req, res) => {
   try {
-    const { name, email } = req.body;
+    const { name, email, status } = req.body;
 
     // Don't allow password updates through this route
     if (req.body.password) {
@@ -67,7 +69,7 @@ exports.updateUser = async (req, res) => {
 
     const user = await User.findByIdAndUpdate(
       req.params.id,
-      { name, email },
+      { name, email, status },
       { new: true, runValidators: true }
     ).select('-password');
 
@@ -93,6 +95,19 @@ exports.deleteUser = async (req, res) => {
     if (!user) {
       return res.status(404).json({ message: 'User not found' });
     }
+    // Also delete all pets belonging to this user
+    await Pet.deleteMany({ userId: user._id.toString() });
+    // Delete all match requests where this user is sender or receiver, or their pets are involved
+    const userPets = await Pet.find({ userId: user._id.toString() });
+    const userPetIds = userPets.map(pet => pet._id);
+    await MatchRequest.deleteMany({
+      $or: [
+        { sender: user._id },
+        { receiver: user._id },
+        { senderPet: { $in: userPetIds } },
+        { receiverPet: { $in: userPetIds } }
+      ]
+    });
     res.json({ message: 'User deleted successfully' });
   } catch (error) {
     if (error.name === 'CastError') {
@@ -137,5 +152,18 @@ exports.loginUser = async (req, res) => {
     });
   } catch (error) {
     res.status(500).json({ message: 'Error logging in' });
+  }
+};
+
+// Get user by email (for login)
+exports.getUserByEmail = async (req, res) => {
+  try {
+    const user = await User.findOne({ email: req.params.email }).select('-password');
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+    res.json(user);
+  } catch (error) {
+    res.status(500).json({ message: 'Error fetching user by email' });
   }
 };

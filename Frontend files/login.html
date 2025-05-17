@@ -17,8 +17,8 @@
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #012312;">
         <div class="container">
-            <a class="navbar-brand" href="index.html">
-                <i class="fas fa-paw me-2"></i>Pawfect Match
+             <a class="navbar-brand" href="index.html">
+                <img src="./images/pawfect-main-logo.png" alt="">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
@@ -51,13 +51,33 @@
         </div>
     </nav>
 
+    <!-- Hero Section for Login -->
+    <section class="login-hero-section py-4 position-relative">
+        <div class="login-hero-bg"></div>
+        <div class="login-hero-paws">
+            <i class="fas fa-paw paw-hero-1"></i>
+            <i class="fas fa-paw paw-hero-2"></i>
+            <i class="fas fa-paw paw-hero-3"></i>
+        </div>
+        <div class="container position-relative z-2">
+            <div class="row align-items-center">
+                <div class="col text-center">
+                    <span class="login-hero-badge"><i class="fas fa-dog"></i> Welcome!</span>
+                    <h1 class="display-6 fw-bold mb-2 text-gradient">Login/Register to Pawfect Match</h1>
+                    <p class="lead text-muted mb-0">Find your perfect match or a new best friend!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Main Content -->
     <div class="container py-5">
         <div class="row justify-content-center">
             <div class="col-md-6">
                 <!-- Login Form -->
-                <div class="card mb-4" id="loginForm">
-                    <div class="card-body">
+                <div class="card mb-4 login-card-glow" id="loginForm">
+                    <div class="card-body position-relative">
+                        <span class="login-card-badge"><i class="fas fa-paw"></i></span>
                         <h2 class="card-title text-center mb-4">Login</h2>
                         <form id="loginFormElement">
                             <div class="mb-3">
@@ -79,8 +99,9 @@
                 </div>
 
                 <!-- Register Form -->
-                <div class="card" id="registerForm" style="display: none;">
-                    <div class="card-body">
+                <div class="card login-card-glow" id="registerForm" style="display: none;">
+                    <div class="card-body position-relative">
+                        <span class="login-card-badge"><i class="fas fa-paw"></i></span>
                         <h2 class="card-title text-center mb-4">Register</h2>
                         <form id="registerFormElement">
                             <div class="mb-3">
@@ -193,6 +214,7 @@
                         
                         // Redirect based on user role
                         if (data.user.role === 'admin') {
+                            sessionStorage.setItem('adminLoggedIn', 'true');
                             window.location.href = 'admin-dashboard.html';
                         } else {
                             window.location.href = 'index.html';
@@ -229,7 +251,7 @@
                             name,
                             email,
                             password,
-                            role: 'user' // Default role for new registrations
+                            role: email === 'admin@gmail.com' ? 'admin' : 'user' // Set role based on email
                         })
                     });
 
@@ -251,5 +273,147 @@
             });
         });
     </script>
+
+    <style>
+    .login-hero-section {
+        background: linear-gradient(135deg, #FFF8EA 0%, #fff6e3 100%);
+        position: relative;
+        overflow: hidden;
+        min-height: 160px;
+        z-index: 1;
+        padding-top: 1.5rem !important;
+        padding-bottom: 1.5rem !important;
+        margin-bottom: 0.5rem;
+    }
+    .login-hero-bg {
+        position: absolute;
+        top: -40px;
+        right: -60px;
+        width: 320px;
+        height: 180px;
+        background: radial-gradient(circle at 70% 30%, #FFB03133 0%, #fff6e3 80%);
+        border-radius: 60% 40% 60% 40% / 40% 60% 40% 60%;
+        z-index: 0;
+        opacity: 0.35;
+        pointer-events: none;
+        filter: blur(2px);
+    }
+    .login-hero-paws {
+        position: absolute;
+        left: 32px;
+        bottom: 18px;
+        z-index: 0;
+        opacity: 0.13;
+        pointer-events: none;
+    }
+    .login-hero-paws .fa-paw {
+        color: #FFB031;
+        font-size: 2.1rem;
+        position: absolute;
+        opacity: 0.7;
+    }
+    .login-hero-paws .paw-hero-1 { left: 0; bottom: 0; font-size: 2.1rem; transform: rotate(-10deg); }
+    .login-hero-paws .paw-hero-2 { left: 32px; bottom: 18px; font-size: 1.3rem; transform: rotate(8deg); }
+    .login-hero-paws .paw-hero-3 { left: 60px; bottom: 6px; font-size: 1.7rem; transform: rotate(-18deg); }
+    .login-hero-badge {
+        background: #FFB031;
+        color: #012312;
+        font-weight: 600;
+        border-radius: 50px;
+        padding: 0.4rem 1.2rem;
+        font-size: 1rem;
+        display: inline-block;
+        margin-bottom: 1rem;
+        letter-spacing: 1px;
+        box-shadow: 0 2px 8px rgba(255,176,49,0.12);
+    }
+    .text-gradient {
+        background: linear-gradient(90deg, #FFB031, #ffc107);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+    .login-card-glow {
+        border-radius: 18px !important;
+        background: #fffbe7 !important;
+        box-shadow: 0 8px 32px 0 #FFB03111 !important;
+        border: none !important;
+        position: relative;
+        overflow: visible;
+    }
+    .login-card-badge {
+        position: absolute;
+        top: -28px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: linear-gradient(90deg, #FFB031, #ffc107);
+        color: #012312;
+        font-weight: 700;
+        border-radius: 50px;
+        padding: 0.5rem 1.3rem;
+        font-size: 1.3rem;
+        box-shadow: 0 2px 8px rgba(255,176,49,0.12);
+        z-index: 2;
+        letter-spacing: 1px;
+        animation: badge-pop 1.2s cubic-bezier(.68,-0.55,.27,1.55);
+    }
+    @keyframes badge-pop {
+        0% { transform: scale(0.7) translateX(-50%); opacity: 0; }
+        60% { transform: scale(1.15) translateX(-50%); opacity: 1; }
+        100% { transform: scale(1) translateX(-50%); opacity: 1; }
+    }
+    .form-control {
+        border-radius: 50px !important;
+        background: #f0f4ff !important;
+        border: none !important;
+        padding: 0.8rem 1.2rem !important;
+        font-size: 1.1rem !important;
+        box-shadow: 0 2px 8px #FFB03111 !important;
+        margin-bottom: 0.5rem;
+    }
+    .form-label {
+        font-weight: 600;
+        color: #012312;
+        margin-bottom: 0.3rem;
+    }
+    .btn {
+        border-radius: 50px !important;
+        font-weight: 700 !important;
+        font-size: 1.15rem !important;
+        background: linear-gradient(90deg, #012312 60%, #FFB031 100%) !important;
+        color: #fff !important;
+        border: none !important;
+        box-shadow: 0 2px 8px #FFB03122 !important;
+        transition: background 0.2s, box-shadow 0.2s;
+    }
+    .btn:hover, .btn:focus {
+        background: linear-gradient(90deg, #FFB031 0%, #012312 100%) !important;
+        color: #fff !important;
+        box-shadow: 0 4px 16px #FFB03133 !important;
+    }
+    .card-title {
+        font-weight: 700;
+        color: #012312;
+        letter-spacing: 1px;
+    }
+    .card {
+        border-radius: 18px !important;
+        border: none !important;
+    }
+    .text-center a {
+        color: #1a73e8;
+        font-weight: 600;
+        text-decoration: underline;
+        transition: color 0.2s;
+    }
+    .text-center a:hover {
+        color: #FFB031;
+        text-decoration: underline;
+    }
+    @media (max-width: 575px) {
+        .login-hero-section { min-height: 80px; padding: 0.7rem 0 !important; }
+        .login-card-badge { font-size: 1rem; padding: 0.4rem 1rem; }
+    }
+    </style>
 </body>
 </html> 
