@@ -10,52 +10,91 @@ Pawfect Match is a web-based platform designed to help pet owners find suitable 
 
 ## 💻 Technologies Used
 
-- **Front-End:** HTML, CSS, JavaScript, Bootstrap  
-- **Back-End:** Node.js, Express.js  
-- **Database:** MongoDB  
-- **Authentication:** JSON Web Tokens (JWT)  
-- **Client-Side Storage:** Local Storage, IndexedDB  
-- **API Integration:** UI Avatars  
-  *(Generates avatar images using user initials for accounts without profile photos)*  
-  > 📝 *was: Google Maps API – used to display nearby pet profiles and calculate distances*
-- **Version Control:** GitHub  
-- **Deployment:**  
-  - Front-End: GitHub Pages  
+- **Front-End:** 
+  - HTML, CSS, JavaScript
+  - EJS Templates
+  - Responsive Design
+  - Bootstrap Components
+
+- **Back-End:** 
+  - Node.js
+  - Express.js
+  - RESTful API Architecture
+
+- **Database:** 
+  - MongoDB with Mongoose
+  - Data Modeling & Validation
+
+- **Authentication & Security:**
+  - JSON Web Tokens (JWT)
+  - bcryptjs for Password Hashing
+  - Session Management
+
+- **File Handling:**
+  - Multer for File Uploads
+  - Image Processing
+
+- **Testing & Development:**
+  - Jest for Unit Testing
+  - Supertest for API Testing
+  - Nodemon for Development
+  - dotenv for Environment Variables
+
+- **Version Control & Deployment:**
+  - GitHub
+  - Front-End: GitHub Pages
   - Back-End: Render or Vercel
 
 ---
 
 ## 🚀 Features
 
-- **User Authentication & Profile Management**  
-  Secure login and profile setup for pet owners.
+### 👤 User Interface & Experience
 
-- **Pet Profile Management**  
-  Create, view, and manage detailed profiles of pets including photos, breed, age, and traits.  
-  > 📝 *Previously included vaccination record uploads and verification — now simplified.*
+#### Visitor Features
+- **Home Page:** Platform introduction and purpose
+- **Browse Pets:** View pet profiles without registration
+- **About Us:** Team information and platform details
+- **Contact Form:** Submit complaints and feedback
+- **Login/Register:** Secure authentication system
 
-- **Match Suggestions**  
-  View a curated list of potential matches based on pet preferences.  
-  > 📝 *was: Smart Matchmaking Algorithm – matched based on pet data and preferences.*
+#### Pet Owner Features
+- **Dashboard:** Personalized landing page with navigation
+- **Pet Management:**
+  - Create and manage pet profiles
+  - Upload pet photos
+  - Track pet information (breed, age, traits)
+- **Matchmaking:**
+  - Browse potential matches
+  - Send and receive match requests
+  - View match history
+  - Add pets to favorites
+- **Account Management:**
+  - Update personal information
+  - View match requests
+  - Manage favorite pets
+  - Contact support
 
-- **Matchmaking Requests**  
-  Send and receive match requests between pet owners.  
-  > 🆕 *Newly added feature in the updated version.*
+#### Admin Features
+- **Admin Dashboard:**
+  - System metrics and statistics
+  - User and pet analytics
+  - Match success tracking
+- **User Management:**
+  - View all user accounts
+  - Block/unblock users
+  - Account moderation
+- **Content Moderation:**
+  - Approve/reject pet profiles
+  - Manage user complaints
+  - System monitoring
 
-- **Messaging System**  
-  Users can include a personal message in match requests, ideal for:
-  - Scheduling meetups
-  - Sharing contact details or preferences  
-  > 🆕 *Newly added feature in the updated version.*
-
-- **UI Avatars**  
-  Automatically generates profile images using initials when photos are not uploaded.  
-  > 🆕 *Newly added feature in the updated version.*
-
-- **Admin Dashboard**  
-  Admins can manage user and pet profiles, view reports, and handle complaints.
-
-> ❌ Removed: **Location-Based Matching using Google Maps API** (present in the original proposal)
+### 🔒 Security & Data Management
+- Secure user authentication
+- Protected routes and endpoints
+- Data validation and sanitization
+- Secure file upload handling
+- Session management
 
 ---
 
@@ -87,6 +126,6 @@ Pawfect Match is a web-based platform designed to help pet owners find suitable 
 | Phase 2: UI Development                   | ✅ 100% |
 | Phase 3: Backend & Database Integration   | ✅ 100% |
 | Phase 4: Form Submission & Data Insertion | ✅ 100% |
-| Phase 5: Data Retrieval & Display         | ⏳  50% |
-| Phase 6: Update & Delete Functionality    | ⏳      |
-| Phase 7: Project Polishing & Documentation| ⏳      |
+| Phase 5: Data Retrieval & Display         | ✅ 100% |
+| Phase 6: Update & Delete Functionality    | ✅ 100% |
+| Phase 7: Project Polishing & Documentation| ✅ 100% |
