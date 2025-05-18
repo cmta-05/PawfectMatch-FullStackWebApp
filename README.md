@@ -1,53 +1,17 @@
-# 🐾 Pawfect Match - A Pet Matchmaking System
+# 🐾 Pawfect Match
 
 ![Pawfect Match Logo](/docs/pawfect-logo.png)
 
-## 📌 Description
+## 📌 Overview
 
-Pawfect Match is a web-based platform designed to help pet owners find suitable mates, playmates, or companions for their pets. Users can create pet profiles and view other pets based on compatibility. Once a match request is accepted, owners can personally connect and arrange meetups at their own discretion.
+Pawfect Match is a web-based platform designed to help pet owners find suitable mates, playmates, or companions for their pets. The platform facilitates meaningful connections between pets and their owners through an intuitive matchmaking system.
 
----
+## 🌟 Live Demo Link
 
-## 💻 Technologies Used
+[PawFect Match Live URL](https://pawfectmatch-y2ol.onrender.com/)  
 
-- **Front-End:** 
-  - HTML, CSS, JavaScript
-  - EJS Templates
-  - Responsive Design
-  - Bootstrap Components
 
-- **Back-End:** 
-  - Node.js
-  - Express.js
-  - RESTful API Architecture
-
-- **Database:** 
-  - MongoDB with Mongoose
-  - Data Modeling & Validation
-
-- **Authentication & Security:**
-  - JSON Web Tokens (JWT)
-  - bcryptjs for Password Hashing
-  - Session Management
-
-- **File Handling:**
-  - Multer for File Uploads
-  - Image Processing
-
-- **Testing & Development:**
-  - Jest for Unit Testing
-  - Supertest for API Testing
-  - Nodemon for Development
-  - dotenv for Environment Variables
-
-- **Version Control & Deployment:**
-  - GitHub
-  - Front-End: GitHub Pages
-  - Back-End: Render or Vercel
-
----
-
-## 🚀 Features
+## ✨ Features
 
 ### 👤 User Interface & Experience
 
@@ -98,24 +62,96 @@ Pawfect Match is a web-based platform designed to help pet owners find suitable 
 
 ---
 
-## 👥 Team Members & Roles
+## 🛠️ Technologies Used
+
+### Frontend
+- HTML5, CSS3, JavaScript
+- EJS Templates
+- Bootstrap 5
+- Responsive Design
+
+### Backend
+- Node.js
+- Express.js
+- RESTful API Architecture
+- MongoDB with Mongoose
+- JWT Authentication
+- bcryptjs for Password Hashing
+
+### Development & Testing
+- Jest for Unit Testing
+- Supertest for API Testing
+- Nodemon for Development
+- dotenv for Environment Variables
+
+### Deployment
+- GitHub for Version Control
+- GitHub Pages for Frontend
+- Render for Backend API
+
+## 🚀 Installation
+
+1. **Clone the Repository**
+   ```bash
+   git clone https://github.com/cmta-05/PawfectMatch-FullStackWebApp.git
+   cd PawfectMatch-FullStackWebApp
+   ```
+
+2. **Install Dependencies**
+   ```bash
+   # Install backend dependencies
+   npm install
+
+   # Install frontend dependencies (if any)
+   cd frontend
+   npm install
+   ```
+
+3. **Environment Setup**
+   Create a `.env` file in the root directory:
+   ```
+   MONGO_URI=your_mongo_connection_string
+   PORT=5000
+   JWT_SECRET=your_jwt_secret
+   ```
+
+4. **Run the Application**
+   ```bash
+   # Start backend server
+   npm start
+
+   # Start frontend (if applicable)
+   cd frontend
+   npm start
+   ```
+
+## 👥 Contributors
 
 | Name                     | Role                            |
 |--------------------------|---------------------------------|
 | Charlene Mae Adille     | Project Manager, GitHub Manager |
-| Enrick Guiller Relos    | Front-End Developer              |
-| Jhon Kenneth Aguilar    | Back-End Developer               |
-| Juno Alligah Romano     | Database Manager                 |
-| Hazel Marie Balunsay    | Documentation Officer            |
+| Enrick Guiller Relos    | Front-End Developer             |
+| Jhon Kenneth Aguilar    | Back-End Developer              |
+| Juno Alligah Romano     | Database Manager                |
+| Hazel Marie Balunsay    | Documentation Officer           |
 
----
+## 📸 Screenshots
 
-## 🏫 Class Information
+![HomePage Preview](/docs/HomePage_Screenshot.png)
 
-**Course:** Bachelor of Science in Information Technology  
-**Block:** 2B  
+![Browse Pets Preview](/docs/BrowsePets_Screenshot.png)
 
----
+![About Us Preview](/docs/AboutUs_Screenshot.png)
+
+![Login/Register Preview](/docs/LoginRegister_Screenshot.png)
+
+
+
+## 📚 Documentation
+
+- [Backend API Documentation](https://pawfect-match-api.onrender.com/api-docs)
+- [Project Proposal](/docs/Project%20Proposal_Pawfect%20Match.pdf)
+- [Lab Report](/docs/Pawfect%20Match_Lab%20Report%20W12_IT%20112%20WST.pdf)
 
 ## 📈 Project Progress
 
@@ -129,3 +165,7 @@ Pawfect Match is a web-based platform designed to help pet owners find suitable 
 | Phase 5: Data Retrieval & Display         | ✅ 100% |
 | Phase 6: Update & Delete Functionality    | ✅ 100% |
 | Phase 7: Project Polishing & Documentation| ✅ 100% |
+
+---
+
+Made with ❤️ by Team Pawfect Match
