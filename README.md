@@ -146,13 +146,6 @@ Pawfect Match is a web-based platform designed to help pet owners find suitable 
 ![Login/Register Preview](/docs/LoginRegister_Screenshot.png)
 
 
-
-## 📚 Documentation
-
-- [Backend API Documentation](https://pawfect-match-api.onrender.com/api-docs)
-- [Project Proposal](/docs/Project%20Proposal_Pawfect%20Match.pdf)
-- [Lab Report](/docs/Pawfect%20Match_Lab%20Report%20W12_IT%20112%20WST.pdf)
-
 ## 📈 Project Progress
 
 | Phase                                     | Status  |

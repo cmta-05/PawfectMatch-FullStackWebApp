@@ -1,39 +1,75 @@
 # 📄 Project Documentation – Pawfect Match
 
-This `/docs` folder contains the official **laboratory reports** and **supporting materials** submitted throughout the development of *Pawfect Match*, organized by project phase.
+This `/docs` folder contains all **laboratory reports**, **screenshots**, and **assets** submitted throughout the development of *Pawfect Match*, organized by project phase and file type.
 
 ---
 
 ## 🗂️ Contents
 
-| **File / Folder**                              | **Description**                                                                 |
-|------------------------------------------------|---------------------------------------------------------------------------------|
-| `Project Proposal_Pawfect Match.pdf`           | ✅ **Week 10** – Project planning: proposal, ERD, system design, and feature list. |
-| `Pawfect Match_Lab Report W12_IT 112 WST.pdf`  | ✅ **Week 12** – Phase 2 & 3: Frontend layout + backend scaffolding setup.        |
-| `Phase 2_ Screenshots of all frontend pages.pdf`| 📸 Visual documentation of all developed frontend pages for submission requirements. |
-| *(Other supporting files)*                     | Used internally for creating and updating project `README.md` files.             |
-| *(Upcoming Files)*                  | Will include reports for Phases 4 to 7 as submitted in future lab assignments.  |
----
+### Laboratory Reports
+| **File Name**                                      | **Description**                                                      |
+|----------------------------------------------------|----------------------------------------------------------------------|
+| Pawfect Match_Lab Report W10_IT112 WST.pdf         | ✅ Week 10 – Project planning: proposal, ERD, system design.         |
+| Pawfect Match_Lab Report W12_IT 112 WST.pdf        | ✅ Week 12 – Frontend layout, backend scaffolding setup.             |
+| Pawfect Match_Lab Report W14_IT 112 WST.pdf        | ✅ Week 14 – Data retrieval, display, and related features.          |
+| Pawfect Match_Lab Report W16_IT 112 WST.pdf        | ✅ Week 16 – Finalization, deployment, and documentation.            |
+| Phase 2_ Screenshots of all frontend pages.pdf      | 📸 Visual documentation of all developed frontend pages.             |
 
-## 📆 Phase Mapping
+### Screenshots
+| **File Name**                | **Description**                                                        |
+|------------------------------|------------------------------------------------------------------------|
+| HomePage_Screenshot.png      | Home page preview                                                      |
+| BrowsePets_Screenshot.png    | Browse pets page preview                                               |
+| AboutUs_Screenshot.png       | About Us page preview                                                  |
+| LoginRegister_Screenshot.png | Login/Register page preview                                            |
+| frontend.jpg                 | For README file purposes in /Frontend files README under Phase 2.       |
 
-| **Week** | **Phase**                           | **Focus**                                                                            | **Included Documents**                               |
-|----------|-------------------------------------|--------------------------------------------------------------------------------------|------------------------------------------------------|
-| Week 10  | Phase 1 – Project Planning          | Proposal, ERD, system architecture, GitHub setup                                     | `Project Proposal_Pawfect Match.pdf`                |
-| Week 11  | Phase 2 – Frontend Design           | Home, About, layout design using HTML/CSS/Bootstrap                                 | `Pawfect Match_Lab Report W12_IT 112 WST.pdf`       |
-| Week 12  | Phase 3 – Backend Setup             | Node.js server, Express routes, MongoDB schema                                      | `Pawfect Match_Lab Report W12_IT 112 WST.pdf`       |
-| Week 13  | Phase 4 – Form Submission & Insertion | Frontend forms connected to backend APIs                                            | *(To be added)*                                     |
-| Week 14  | Phase 5 – Data Retrieval & Display  | Fetch and display MongoDB data via JS and Bootstrap UI                             | *(To be added)*                                     |
-| Week 15  | Phase 6 – Update & Delete           | PUT and DELETE operations for full CRUD                                             | *(To be added)*                                     |
-| Week 16  | Phase 7 – Finalization & Defense    | Deployment, documentation, UI/UX polish, and final defense prep                     | *(To be added)*                                     |
-
----
-
-## 🧑‍💻 Contributors
-
-- **Documentation Manager:** Hazel Marie Balunsay  
-- **Support Contributors:** All group members as per assigned roles per phase.
+### Assets
+| **File Name**      | **Description**         |
+|--------------------|------------------------|
+| pawfect-logo.png   | Project logo/branding  |
 
 ---
 
-> 📝 *Note: Some files in this folder (e.g., markdown snippets, text files) are included solely to support README documentation and internal versioning.*
+## 🛠️ Technical Documentation
+
+### Frontend Implementation
+- HTML5, CSS3, JavaScript
+- EJS Templates
+- Bootstrap 5
+- Responsive Design
+
+### Backend Implementation
+- Node.js
+- Express.js
+- RESTful API Architecture
+- MongoDB with Mongoose
+- JWT Authentication
+- bcryptjs for Password Hashing
+
+### Testing & Development
+- Jest for Unit Testing
+- Supertest for API Testing
+- Nodemon for Development
+- dotenv for Environment Variables
+
+### Deployment
+- GitHub for Version Control
+- Render for Backend API
+- Live Demo: [PawFect Match](https://pawfectmatch-y2ol.onrender.com/)
+
+---
+
+## 👥 Contributors
+
+| Name                   | Role                            |
+|------------------------|---------------------------------|
+| Charlene Mae Adille    | Project Manager, GitHub Manager |
+| Enrick Guiller Relos   | Front-End Developer             |
+| Jhon Kenneth Aguilar   | Back-End Developer              |
+| Juno Alligah Romano    | Database Manager                |
+| Hazel Marie Balunsay   | Documentation Officer           |
+
+---
+
+> 📝 *Note: This documentation is maintained by the Documentation Officer and updated regularly to reflect the current state of the project. All files listed above are present in this directory as of the latest update.*
