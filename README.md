@@ -125,6 +125,13 @@ Pawfect Match is a web-based platform designed to help pet owners find suitable 
    npm start
    ```
 
+## 👤 Admin Access
+
+To access the admin dashboard, use the following credentials:
+
+- **Email:** admin@fmail.com
+- **Password:** admin123
+
 ## 👥 Contributors
 
 | Name                     | Role                            |
